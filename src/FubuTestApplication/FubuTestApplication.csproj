@@ -33,31 +33,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bottles">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuCore">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuLocalization">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.StructureMap">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.WebForms, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.WebForms">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuMVC.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HtmlTags">
       <HintPath>..\..\lib\htmltags\HtmlTags.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -67,26 +67,27 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web" />
-    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4">
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223">
+    <Reference Include="StructureMap">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=1.1.0.694, Culture=neutral, PublicKeyToken=8aa435e3cb308880">
+    <Reference Include="FluentNHibernate">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fluent-nhibernate\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4">
+    <Reference Include="NHibernate">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NHibernate\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
+    <Reference Include="System.Data.SQLite">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\sqlite\System.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Practices.ServiceLocation">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Common Service Locator\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>

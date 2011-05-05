@@ -31,35 +31,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bottles">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuCore">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuLocalization">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuMVC.StructureMap">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="FubuTestingSupport, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuTestingSupport">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuTestingSupport.dll</HintPath>
     </Reference>
-    <Reference Include="FubuValidation, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FubuValidation">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fubu\FubuValidation.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit\nunit.framework.dll</HintPath>
     </Reference>
@@ -71,20 +71,23 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4">
+    <Reference Include="NHibernate">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NHibernate\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f">
+    <Reference Include="Rhino.Mocks">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Rhino mocks\Rhino.Mocks.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.AutoMocking, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223">
+    <Reference Include="StructureMap.AutoMocking">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\StructureMap\StructureMap.AutoMocking.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Practices.ServiceLocation">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Common Service Locator\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223">
+    <Reference Include="StructureMap">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
     </Reference>
