@@ -66,15 +66,15 @@ end
 
 
 desc "Compiles the app"
-task :compile => [:clean, :version] do
+task :compile => [:clean, :version, :bundle_fast_pack] do
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuFastPack.sln', :clrversion => CLR_TOOLS_VERSION
 
   copyOutputFiles "src/FubuFastPack/bin/#{COMPILE_TARGET}", "FubuFastPack.{dll,pdb}", props[:stage]
 end
 
 desc "Bundles up the packaged content in FubuFastPack"
-task :bundle_fast_pack => [:compile] do
-  sh "src/fubu/bin/#{COMPILE_TARGET}/fubu.exe assembly-pak src/FubuFastPack -projfile FubuFastPack.csproj"
+task :bundle_fast_pack do
+  sh "lib/fubu/fubu.exe assembly-pak src/FubuFastPack -projfile FubuFastPack.csproj"
 end
 
 
