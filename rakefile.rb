@@ -99,9 +99,15 @@ task :storyteller => [:compile] do
   sh "lib/storyteller/StoryTellerRunner Storyteller.xml output/st-results.htm"
 end
 
+desc "ZIPs up the build results"
+zip :package do |zip|
+	zip.directories_to_zip = [props[:stage]]
+	zip.output_file = 'fubumvc.zip'
+	zip.output_path = [props[:artifacts]]
+end
 
 desc "Build the nuget package"
 task :nuget do
-	sh "lib/nuget.exe pack packaging/nuget/fubumvc.nuspec -o #{props[:artifacts]} -Version #{build_number}"
+	sh "lib/nuget.exe pack packaging/nuget/fubumvc.fastpack.nuspec -o #{props[:artifacts]} -Version #{build_number}"
 	sh "lib/nuget.exe pack packaging/nuget/fubumvc.fastpack.nuspec -o #{props[:artifacts]} -Version #{build_number}"
 end
