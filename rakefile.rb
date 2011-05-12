@@ -69,7 +69,7 @@ desc "Compiles the app"
 task :compile => [:clean, :version, :bundle_fast_pack] do
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuFastPack.sln', :clrversion => CLR_TOOLS_VERSION
 
-  copyOutputFiles "src/FubuFastPack/bin/#{COMPILE_TARGET}", "FubuFastPack.{dll,pdb}", props[:stage]
+  copyOutputFiles "src/FubuFastPack/bin/#{COMPILE_TARGET}", "Fubu*.{dll,pdb}", props[:stage]
 end
 
 desc "Bundles up the packaged content in FubuFastPack"
@@ -102,12 +102,11 @@ end
 desc "ZIPs up the build results"
 zip :package do |zip|
 	zip.directories_to_zip = [props[:stage]]
-	zip.output_file = 'fubumvc.zip'
+	zip.output_file = 'FubuFastPack.zip'
 	zip.output_path = [props[:artifacts]]
 end
 
 desc "Build the nuget package"
 task :nuget do
-	sh "lib/nuget.exe pack packaging/nuget/fubumvc.fastpack.nuspec -o #{props[:artifacts]} -Version #{build_number}"
 	sh "lib/nuget.exe pack packaging/nuget/fubumvc.fastpack.nuspec -o #{props[:artifacts]} -Version #{build_number}"
 end
