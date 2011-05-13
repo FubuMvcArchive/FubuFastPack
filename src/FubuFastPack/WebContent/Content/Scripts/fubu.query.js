@@ -44,9 +44,9 @@
 
         $(options.runQuerySelector).click(queryRunner);
 
-        if (this.context == document) {
+        if (typeof this.context == 'undefined' || this.context == document) {
             // We cannot wire up the Enter key if a context was used in the selector
-            $("#" + div.id + "input[type=text]").live("keypress", function (keyEvent) {
+            $("#" + div.id + " input[type=text]").live("keypress", function (keyEvent) {
                 if (keyEvent.which == 13) {
                     queryRunner();
                 }
@@ -108,7 +108,7 @@ $.fn.asQueryBuilder.defaults =
     clearCriteriaSelector: "#search-criteria-cancel",
     addCriteriaSelector: "#add",
     removeCriteriaTemplateSelector: "#removeFilter",
-    runQuerySelector: "#search-criteria-search",
+    runQuerySelector: "#search-criteria-search"
 };
 
 function buildQueryOptions(onFormClear) {search-criteria-search
@@ -216,7 +216,7 @@ $.fn.asFilterRow = function (templates, options, div) {
 	
         return {
             header: $('option:selected', row.propertySelector).text(),
-            messages: row.editor.validate(),
+            messages: row.editor.validate()
         };
     }
 
@@ -241,7 +241,6 @@ $.fn.asFilterRow = function (templates, options, div) {
 
     return row;
 }
-
 
 
 

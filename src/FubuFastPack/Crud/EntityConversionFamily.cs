@@ -8,23 +8,19 @@ using FubuFastPack.Persistence;
 
 namespace FubuFastPack.Crud
 {
-    public class EntityConversionFamily : IConverterFamily
+    public class EntityConversionFamily : StatelessConverter
     {
-        public bool Matches(PropertyInfo property)
+        public override bool Matches(PropertyInfo property)
         {
             return property.PropertyType.CanBeCastTo<DomainEntity>() 
                 && !property.PropertyType.HasAttribute<IgnoreEntityInBindingAttribute>();
         }
 
-        public ValueConverter Build(IValueConverterRegistry registry, PropertyInfo property)
+        public override object Convert(IPropertyContext context)
         {
-            var entityType = property.PropertyType;
-
-            return request =>
-            {
-                var id = request.ValueAs<Guid?>();
-                return id.HasValue ? request.Service<IRepository>().Find(entityType, id.Value) : null;
-            };
+            var entityType = context.Property.PropertyType;
+            var id = context.ValueAs<Guid?>();
+            return id.HasValue ? context.Service<IRepository>().Find(entityType, id.Value) : null;
         }
     }
 }
