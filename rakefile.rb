@@ -107,3 +107,11 @@ zip :package do |zip|
 	zip.output_file = 'FubuFastPack.zip'
 	zip.output_path = [props[:artifacts]]
 end
+
+desc "Build the nuget package"
+
+task :nuget do
+	
+	sh "lib/nuget.exe pack packaging/nuget/fubumvc.fastpack.nuspec -o #{props[:artifacts]} -Version #{BUILD_NUMBER}"
+
+end
