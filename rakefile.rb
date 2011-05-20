@@ -23,7 +23,7 @@ desc "**Default**, compiles and runs tests"
 task :default => [:compile, :unit_test]
 
 desc "Target used for the CI server"
-task :ci => [:default,:package,:nuget]
+task :ci => [:default,:package,"nug:build"]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -106,12 +106,4 @@ zip :package do |zip|
 	zip.directories_to_zip = [props[:stage]]
 	zip.output_file = 'FubuFastPack.zip'
 	zip.output_path = [props[:artifacts]]
-end
-
-desc "Build the nuget package"
-
-task :nuget do
-	
-	sh "lib/nuget.exe pack packaging/nuget/fubumvc.fastpack.nuspec -o #{props[:artifacts]} -Version #{BUILD_NUMBER}"
-
 end
