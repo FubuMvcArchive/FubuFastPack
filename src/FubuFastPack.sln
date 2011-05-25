@@ -3,6 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Build_Utilities", "__Build_Utilities", "{7AC4D197-535A-4686-8E21-18257B2ADB3A}"
 	ProjectSection(SolutionItems) = preProject
+		..\packaging\nuget\fubumvc.fastpack.nuspec = ..\packaging\nuget\fubumvc.fastpack.nuspec
 		..\InstallGems.bat = ..\InstallGems.bat
 		..\rakefile.rb = ..\rakefile.rb
 	EndProjectSection
