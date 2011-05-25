@@ -70,7 +70,6 @@
             gridview: true,
             colNames: definition.headers,
             colModel: definition.colModel,
-            /*onCellSelect: onCellSelect,*/
             rowNum: model.initialRows || 10,
             rowList: [3, 10, 20, 30],
             loadui: "disable",
@@ -94,13 +93,27 @@
                 $div.trigger("grid-refreshed", data);
                 div.selectedRow = null;
             },
+            onCellSelect: function(rowid, iCol, cellcontent, e){
+                var row = div.getData(rowId);
+                $div.trigger("cell-selected", [row, iCol, cellcontent, e]);
+            },
             ondblClickRow: function (rowId, iCol, cellcontent, e) {
                 var row = div.getData(rowId);
                 $div.trigger("row-doubleclicked", row);
             },
+            onSortCol: function(name, colIndex, order){
+                $div.trigger("col-sorted", [name, colIndex, order]);
+            },
+            onRightClickRow: function(rowid, iRow, iCol, e){
+                var row = div.getData(rowId);
+                $div.trigger("row-rightclicked", [row, iCol, e]);
+            },
             onSelectRow: function (rowid, status) {
                 div.selectedRow = div.getData(rowid);
                 $div.trigger("row-selected", div.selectedRow);
+            },
+            resizeStart: function(evt, colIdx){
+                $div.trigger("col-resizing", [colIdx, evt]);
             },
             resizeStop: function(newWidth, colIdx){
 				$div.trigger("col-resized", [newWidth, colIdx]);
