@@ -85,6 +85,7 @@
             postData: { criterion: definition.initialCriteria },
             pager: $(pagerSelector),
             onPaging: function (pgButton) {
+                $div.trigger("grid-paging", pgButton);
                 if (pgButton == 'records') {
                     this.page = 1;
                 }
@@ -93,20 +94,20 @@
                 $div.trigger("grid-refreshed", data);
                 div.selectedRow = null;
             },
-            onCellSelect: function(rowid, iCol, cellcontent, e){
+            onCellSelect: function(rowId, iCol, cellcontent, e){
                 var row = div.getData(rowId);
-                $div.trigger("cell-selected", [row, iCol, cellcontent, e]);
+                $div.trigger("cell-selected", [row, rowId, iCol, cellcontent, e]);
             },
-            ondblClickRow: function (rowId, iCol, cellcontent, e) {
+            ondblClickRow: function (rowId, iRow, iCol, e) {
                 var row = div.getData(rowId);
-                $div.trigger("row-doubleclicked", row);
+                $div.trigger("row-doubleclicked", row, iRow, iCol, e);
             },
             onSortCol: function(name, colIndex, order){
                 $div.trigger("col-sorted", [name, colIndex, order]);
             },
-            onRightClickRow: function(rowid, iRow, iCol, e){
+            onRightClickRow: function(rowId, iRow, iCol, e){
                 var row = div.getData(rowId);
-                $div.trigger("row-rightclicked", [row, iCol, e]);
+                $div.trigger("row-rightclicked", [row, iRow, iCol, e]);
             },
             onSelectRow: function (rowid, status) {
                 div.selectedRow = div.getData(rowid);
@@ -120,6 +121,7 @@
             },
             loadComplete: function (data) {
                 div.data = data.items;
+                $div.trigger("grid-dataloaded", data);
                 return true;
             }
         };
