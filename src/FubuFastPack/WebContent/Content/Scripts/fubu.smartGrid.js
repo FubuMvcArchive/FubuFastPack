@@ -22,9 +22,9 @@
             var linkName = options.colModel.linkName;
             var url = rowObject[0][linkName];
 
-            var length = parseInt(options.colModel.trim-length);
+            var length = parseInt(options.colModel.trim - length);
             var displayValue = cellValue;
-            if (displayValue.length > length){
+            if (displayValue.length > length) {
                 displayValue = displayValue.substr(0, length) + "&hellip;";
             }
 
@@ -36,7 +36,7 @@
         return this.each(function (i, div) {
             $.fubu.SmartGrid(div, userOptions);
         });
-    }
+    };
 
     var fubu;
     $.fubu = fubu = $.fubu || {};
@@ -57,7 +57,7 @@
             var rowData = div.data[index];
             item.data = rowData.cell[0];
             return item;
-        }
+        };
         var pagerSelector = '#' + definition.pagerId;
         var gridDefaultOptions =
         {
@@ -94,7 +94,7 @@
                 $div.trigger("grid-refreshed", data);
                 div.selectedRow = null;
             },
-            onCellSelect: function(rowId, iCol, cellcontent, e){
+            onCellSelect: function (rowId, iCol, cellcontent, e) {
                 var row = div.getData(rowId);
                 $div.trigger("cell-selected", [row, rowId, iCol, cellcontent, e]);
             },
@@ -102,10 +102,10 @@
                 var row = div.getData(rowId);
                 $div.trigger("row-doubleclicked", row, iRow, iCol, e);
             },
-            onSortCol: function(name, colIndex, order){
+            onSortCol: function (name, colIndex, order) {
                 $div.trigger("col-sorted", [name, colIndex, order]);
             },
-            onRightClickRow: function(rowId, iRow, iCol, e){
+            onRightClickRow: function (rowId, iRow, iCol, e) {
                 var row = div.getData(rowId);
                 $div.trigger("row-rightclicked", [row, iRow, iCol, e]);
             },
@@ -113,11 +113,11 @@
                 div.selectedRow = div.getData(rowid);
                 $div.trigger("row-selected", div.selectedRow);
             },
-            resizeStart: function(evt, colIdx){
+            resizeStart: function (evt, colIdx) {
                 $div.trigger("col-resizing", [colIdx, evt]);
             },
-            resizeStop: function(newWidth, colIdx){
-				$div.trigger("col-resized", [newWidth, colIdx]);
+            resizeStop: function (newWidth, colIdx) {
+                $div.trigger("col-resized", [newWidth, colIdx]);
             },
             loadComplete: function (data) {
                 div.data = data.items;
@@ -131,47 +131,47 @@
 
         div.refresh = function () {
             if (!div.isGridDisabled) {
-				div.grid.setGridParam({ datatype: 'json' });
+                div.grid.setGridParam({ datatype: 'json' });
                 div.grid.trigger("reloadGrid");
             }
-        }
+        };
 
         div.runQuery = function (criterion) {
             div.grid.setGridParam({ page: 1 });
             div.grid.setPostDataItem("criterion", criterion);
             div.refresh();
-        }
+        };
 
-        div.setArgument = function(key, value){
+        div.setArgument = function (key, value) {
             div.grid.setPostDataItem(key, value);
-        }
+        };
 
         div.activateUrl = function (url) {
             div.grid.setGridParam({ url: url });
             div.isGridDisabled = false;
             div.refresh();
-        }
+        };
 
         // give the page a chance to customize any gridOptions
         $div.trigger("grid-init", [gridOptions, model]);
         div.grid.jqGrid(gridOptions);
 
         $("select", pagerSelector).change(function () {
-            var rowsToShow = $(this).val()
-            $div.trigger("pager-rows-change", rowsToShow)
+            var rowsToShow = $(this).val();
+            $div.trigger("pager-rows-change", rowsToShow);
         });
 
         div.refresh();
-    }
-    
+    };
+
     fubu.SmartGrid.selector = ".grid-container";
 })(jQuery);
 
-$.fn.activateGrid = function(url){
-    return this.each(function(i, div){
+$.fn.activateGrid = function(url) {
+    return this.each(function(i, div) {
         div.activateUrl(url);
     });
-}
+};
 
 $(document).ready(function () {
     if ($.fubu.SmartGrid.selector){
