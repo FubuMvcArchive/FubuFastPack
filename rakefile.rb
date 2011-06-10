@@ -15,6 +15,7 @@ COMMON_ASSEMBLY_INFO = 'src/CommonAssemblyInfo.cs';
 CLR_TOOLS_VERSION = "v4.0.30319"
 
 ARTIFACTS = File.expand_path("artifacts")
+@teamcity_build_id = "bt377"
 tc_build_number = ENV["BUILD_NUMBER"]
 build_revision = tc_build_number || Time.new.strftime('5%H%M')
 BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
