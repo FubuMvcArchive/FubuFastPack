@@ -76,7 +76,8 @@ end
 
 desc "Bundles up the packaged content in FubuFastPack"
 task :bundle_fast_pack do
-  sh "lib/fubu/fubu.exe assembly-pak src/FubuFastPack -projfile FubuFastPack.csproj"
+  fubu_exe = File.join(Dir.glob("src/packages/FubuMVC.Tools.*").first, "tools", "fubu.exe")
+  sh "#{fubu_exe} assembly-pak src/FubuFastPack -projfile FubuFastPack.csproj"
 end
 
 
