@@ -12,12 +12,15 @@
     <description>Additional functionality useful for FubuMVC applications that use NHibernate and StructureMap</description>
     <tags>fubumvc mvc nhibernate</tags>
     <dependencies>
-      <dependency id="FubuMVC" version="[0.4.0.1,0.4.1)" />
+      <dependency id="FubuMVC.References" />
+      <dependency id="FubuValidation" />
       <dependency id="NHibernate" version="[2.1.2.4000]" />
       <dependency id="NHibernate.Linq" version="[1.0]" />
+      <dependency id="FluentNHibernate" version="[1.1.0.694]" />
     </dependencies>
   </metadata>
   <files>
-	<file src="..\..\build\FubuFastPack.*" target="lib" />
+	  <file src="..\..\build\FubuFastPack.*" target="lib" />
+	  <file src="..\..\src\FubuFastPack\**\*.cs" target="src" />
   </files>
 </package>
