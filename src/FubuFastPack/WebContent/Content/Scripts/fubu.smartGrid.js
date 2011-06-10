@@ -105,10 +105,6 @@
             onSortCol: function (name, colIndex, order) {
                 $div.trigger("col-sorted", [name, colIndex, order]);
             },
-            onRightClickRow: function (rowId, iRow, iCol, e) {
-                var row = div.getData(rowId);
-                $div.trigger("row-rightclicked", [row, iRow, iCol, e]);
-            },
             onSelectRow: function (rowid, status) {
                 div.selectedRow = div.getData(rowid);
                 $div.trigger("row-selected", div.selectedRow);
