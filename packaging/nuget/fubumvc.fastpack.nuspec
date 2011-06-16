@@ -14,18 +14,19 @@
     <dependencies>
       <dependency id="FubuMVC.References" />
       <dependency id="FubuValidation" />
-      <dependency id="Antlr" version="[3.1.1]" />
-      <dependency id="NHibernate" version="[2.1.2.4000]" />
-      <dependency id="NHibernate.Linq" version="[1.0]" />
-<!-- FNH 1.1.0.694 package actually contains 1.1.0.685 - no good
-      <dependency id="FluentNHibernate" version="[1.1.0.694]" /> 
--->
     </dependencies>
   </metadata>
   <files>
 	  <file src="..\..\build\FubuFastPack.*" target="lib" />
 	  <file src="..\..\src\FubuFastPack\**\*.cs" target="src" />
 
-	  <file src="..\..\lib\fluentnhibernate\FluentNHibernate.dll" target="lib" />
+	  <file src="..\..\lib\fluent-nhibernate\FluentNHibernate.dll" target="lib" />
+	  <file src="..\..\lib\NHibernate\NHibernate.Linq.dll" target="lib" />
+
+	  <file src="..\..\lib\NHibernate\Antlr3.Runtime.dll" target="lib" />
+	  <file src="..\..\lib\NHibernate\Castle.Core.dll" target="lib" />
+	  <file src="..\..\lib\NHibernate\Castle.DynamicProxy2.dll" target="lib" />
+	  <file src="..\..\lib\NHibernate\Iesi.Collections.dll" target="lib" />
+	  <file src="..\..\lib\NHibernate\NHibernate.dll" target="lib" />
   </files>
 </package>
