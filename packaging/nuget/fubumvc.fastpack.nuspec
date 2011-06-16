@@ -26,6 +26,7 @@
 	  <file src="..\..\lib\NHibernate\Antlr3.Runtime.dll" target="lib" />
 	  <file src="..\..\lib\NHibernate\Castle.Core.dll" target="lib" />
 	  <file src="..\..\lib\NHibernate\Castle.DynamicProxy2.dll" target="lib" />
+	  <file src="..\..\lib\NHibernate\NHibernate.ByteCode.Castle.dll" target="lib" />
 	  <file src="..\..\lib\NHibernate\Iesi.Collections.dll" target="lib" />
 	  <file src="..\..\lib\NHibernate\NHibernate.dll" target="lib" />
   </files>
