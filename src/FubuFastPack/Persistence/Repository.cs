@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FubuCore;
 using FubuFastPack.Domain;
 using FubuFastPack.NHibernate;
-using FubuFastPack.Querying;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
@@ -18,17 +16,15 @@ namespace FubuFastPack.Persistence
         private readonly ISession _session;
         private readonly IEntityFinder _finder;
         private readonly IConfigurationSource _source;
-        private readonly IEnumerable<IDataRestriction> _dataRestrictions;
 
-        public Repository(ISession session, IEntityFinder finder, IConfigurationSource source, IEnumerable<IDataRestriction> dataRestrictions)
+        public Repository(ISession session, IEntityFinder finder, IConfigurationSource source)
         {
             if (session == null) throw new ArgumentNullException("session");
 
             _session = session;
 
             _finder = finder;
-            _source = source;
-            _dataRestrictions = dataRestrictions;
+            _source = source;        
         }
 
         public DomainEntity FindByPath(string path)
@@ -70,17 +66,17 @@ namespace FubuFastPack.Persistence
 
         public IQueryable<T> Query<T>()
         {
-            return _session.Linq<T>();
+            return _session.Query<T>();
         }
 
         public IQueryable<T> Query<T>(Expression<Func<T, bool>> where)
         {
-            return _session.Linq<T>().Where(where);
+            return _session.Query<T>().Where(where);
         }
 
         public IQueryable<T> Query<T>(IQueryExpression<T> queryExpression) where T : DomainEntity
         {
-            return queryExpression.Apply(_session.Linq<T>());
+            return queryExpression.Apply(_session.Query<T>());
         }
 
         public void Save(object target)
@@ -107,7 +103,7 @@ namespace FubuFastPack.Persistence
 
         public T FindBy<T>(Expression<Func<T, bool>> where)
         {
-            return _session.Linq<T>().FirstOrDefault(where);
+            return _session.Query<T>().FirstOrDefault(where);
         }
 
     }
