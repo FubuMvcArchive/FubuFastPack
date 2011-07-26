@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FubuCore;
-using FubuCore.Reflection;
 using FubuFastPack.Domain;
 using FubuFastPack.NHibernate;
 using FubuFastPack.Querying;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using ReflectionHelper = FubuCore.Reflection.ReflectionHelper;
 
 namespace FubuFastPack.Persistence
 {

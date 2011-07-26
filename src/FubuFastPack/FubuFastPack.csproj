@@ -34,6 +34,10 @@
     <Reference Include="Bottles">
       <HintPath>..\packages\Bottles.0.9.0.98\lib\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=1.1.0.694, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\fluent-nhibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.0.9.1.32\lib\FubuCore.dll</HintPath>
     </Reference>
@@ -70,21 +74,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Castle.DynamicProxy2">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NHibernate\Castle.DynamicProxy2.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\fluent-nhibernate\FluentNHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NHibernate\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Linq">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NHibernate\NHibernate.Linq.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

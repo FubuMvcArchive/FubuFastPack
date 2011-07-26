@@ -20,9 +20,7 @@
 	  <file src="..\..\build\FubuFastPack.*" target="lib" />
 	  <file src="..\..\src\FubuFastPack\**\*.cs" target="src" />
 
-	  <file src="..\..\lib\fluent-nhibernate\FluentNHibernate.dll" target="lib" />
-	  <file src="..\..\lib\NHibernate\NHibernate.Linq.dll" target="lib" />
-
+	  <file src="..\..\lib\fluent-nhibernate\FluentNHibernate.dll" target="lib" />	  
 	  <file src="..\..\lib\NHibernate\Antlr3.Runtime.dll" target="lib" />
 	  <file src="..\..\lib\NHibernate\Castle.Core.dll" target="lib" />
 	  <file src="..\..\lib\NHibernate\Castle.DynamicProxy2.dll" target="lib" />
