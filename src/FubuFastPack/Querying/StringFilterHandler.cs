@@ -37,7 +37,7 @@ namespace FubuFastPack.Querying
 
             var expression = Expression.Call(memberExpression, _stringMethod, constantExpression);
 
-            var parameterExpression = Expression.Parameter(typeof (T), "target");
+            var parameterExpression = Expression.Parameter(typeof (T), "x");
 
             return Expression.Lambda<Func<T, bool>>(expression, parameterExpression);
         }
