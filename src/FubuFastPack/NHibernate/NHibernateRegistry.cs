@@ -9,6 +9,8 @@ using FubuCore;
 using FubuCore.Util;
 using NHibernate.Cfg;
 using NHibernate.Event;
+using NHibernate.Cfg.Loquacious;
+using NHibernate.Linq.Functions;
 
 namespace FubuFastPack.NHibernate
 {
@@ -52,6 +54,11 @@ namespace FubuFastPack.NHibernate
         public void Configure(Action<Configuration> configure)
         {
             modifyConfiguration = configure;
+        }
+
+        public void LinqToHqlGeneratorsRegistry<T>() where T : ILinqToHqlGeneratorsRegistry
+        {
+            Configure(x => x.LinqToHqlGeneratorsRegistry<T>());
         }
 
         public void MappingsFromAssemblies(IEnumerable<Assembly> assemblies)
