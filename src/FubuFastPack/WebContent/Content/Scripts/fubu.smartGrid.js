@@ -103,7 +103,8 @@
                 $div.trigger("row-doubleclicked", row, iRow, iCol, e);
             },
             onSortCol: function (name, colIndex, order) {
-                $div.trigger("col-sorted", [name, colIndex, order]);
+                var colName = name.split("_").pop(); 
+                $div.trigger("col-sorted", [colName, colIndex, order]);
             },
             onSelectRow: function (rowid, status) {
                 div.selectedRow = div.getData(rowid);
