@@ -56,6 +56,7 @@ namespace IntegrationTesting.Fixtures.Packages
         {
             var tempPath = Path.GetTempPath();
             var zipDirectory = Path.Combine(tempPath, "zip-contents");
+
             if (Directory.Exists(zipDirectory))
             {
                 Directory.Delete(zipDirectory, true);
