@@ -196,7 +196,6 @@
     <Compile Include="NHibernate\IWhere.cs" />
     <Compile Include="NHibernate\NHibernateRegistry.cs" />
     <Compile Include="NHibernate\Projection.cs" />
-    <Compile Include="NHibernate\ProjectionExtensions.cs" />
     <Compile Include="NHibernate\ProjectionColumn.cs" />
     <Compile Include="Querying\SortRule.cs" />
     <Compile Include="NHibernate\SqlRunner.cs" />
