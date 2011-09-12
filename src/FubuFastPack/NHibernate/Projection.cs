@@ -9,7 +9,6 @@ using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.SqlCommand;
 
 namespace FubuFastPack.NHibernate
 {
@@ -33,7 +32,37 @@ namespace FubuFastPack.NHibernate
             get { return _wheres.Count(); }
         }
 
-        public IEnumerable<ProjectionAlias> Aliases {get { return _columns.SelectMany(x => x.Aliases).Union(_whereAliases).Distinct(); }}
+        public IEnumerable<ProjectionAlias> Aliases {get
+        {
+            //var a = _columns.SelectMany(x => x.Aliases)
+            //    .Union(_whereAliases)
+            //    .Distinct();
+            //^^^^ this fails because PropertyInfo.GetHashCode() is a FAIL ^^^
+
+            //.Distinct() relies on GetHashCode() to determine if it has seen an item already
+            //since PropertyInfo.GetHashCode() is based on Object.GetHashCode()
+            //it is not sutible for this usage. Therefore we must hand 'distinct'
+            //list uses 'equality' rather than hash codes so switching to that.
+            //TODO: Show Jeremy
+            var result = new List<ProjectionAlias>();
+            foreach(var alias in _whereAliases)
+            {
+                if(!result.Contains(alias))
+                {
+                    result.Add(alias);
+                }
+            }
+
+            foreach (var alias in _columns.SelectMany(x => x.Aliases))
+            {
+                if (!result.Contains(alias))
+                {
+                    result.Add(alias);
+                }
+            }
+
+            return result;
+        }}
 
         public SortRule<T> SortBy { get; set; }
 
@@ -162,7 +191,7 @@ namespace FubuFastPack.NHibernate
         public WhereExpression Where(Expression<Func<T, object>> expression)
         {
             var accessor = ReflectionHelper.GetAccessor(expression);
-            ProjectionAlias.For(accessor, false).Each(x => _whereAliases.Add(x));
+            ProjectionAlias.For(accessor, false).Each(x => _whereAliases.Fill(x));
             return new WhereExpression(expression, _wheres);
         }
 
