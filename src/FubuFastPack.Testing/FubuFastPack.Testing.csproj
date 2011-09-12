@@ -123,6 +123,7 @@
     <Compile Include="Extensibility\ExtensionPropertyBinderTester.cs" />
     <Compile Include="NHibernate\DatabaseSettingsTester.cs" />
     <Compile Include="NHibernate\ProjectionAliasTester.cs" />
+    <Compile Include="NHibernate\ProjectionTester.cs" />
     <Compile Include="Persistence\EntityFinderTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Querying\QueryableDataSourceFilterTester.cs" />
