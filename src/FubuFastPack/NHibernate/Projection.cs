@@ -47,7 +47,7 @@ namespace FubuFastPack.NHibernate
             var result = new List<ProjectionAlias>();
             foreach(var alias in _whereAliases)
             {
-                if(!result.Contains(alias))
+                if(!result.Contains(alias) && alias.PropertyAccessor != null)
                 {
                     result.Add(alias);
                 }
@@ -55,7 +55,7 @@ namespace FubuFastPack.NHibernate
 
             foreach (var alias in _columns.SelectMany(x => x.Aliases))
             {
-                if (!result.Contains(alias))
+                if (!result.Contains(alias) && alias.PropertyAccessor != null)
                 {
                     result.Add(alias);
                 }

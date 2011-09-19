@@ -56,7 +56,7 @@ namespace FubuFastPack.NHibernate
         
         public static IEnumerable<ProjectionAlias> For(Accessor accessor, bool outerJoin)
         {
-            if (accessor.PropertyNames.Length <= 1)
+            if (accessor == null || accessor.PropertyNames.Length <= 1)
             {
                 yield break;
             }
