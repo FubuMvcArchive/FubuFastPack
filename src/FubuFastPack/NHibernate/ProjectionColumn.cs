@@ -26,7 +26,8 @@ namespace FubuFastPack.NHibernate
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other.PropertyAccessor, PropertyAccessor) && other.OuterJoin.Equals(OuterJoin);
+            if (other.PropertyAccessor == null || PropertyAccessor == null) return false;
+            return Equals(other.PropertyAccessor.PropertyNames[0], PropertyAccessor.PropertyNames[0]);
         }
 
         public override bool Equals(object obj)
@@ -41,7 +42,7 @@ namespace FubuFastPack.NHibernate
         {
             unchecked
             {
-                return ((PropertyAccessor != null ? PropertyAccessor.GetHashCode() : 0)*397) ^ OuterJoin.GetHashCode();
+                return ((PropertyAccessor != null ? PropertyAccessor.GetHashCode() : 0)*397);
             }
         }
 

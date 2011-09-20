@@ -19,6 +19,24 @@ namespace FubuFastPack.Testing.Security
         private IFubuRequest _fubuRequest;
 
         [Test]
+        public void should_not_vote_if_the_request_does_not_contain_the_type_the_restriction_applies_to()
+        {
+            _theCase = new Case
+            {
+                Condition = "Open",
+                Title = "A Different Title"
+            };
+            var dataRestrictions = new IDataRestriction<Case>[]
+            {
+                new CasePropertyRestriction(x => x.Condition, "Open"),
+            };
+            Services.InjectArray(dataRestrictions);
+            _fubuRequest = MockFor<IFubuRequest>();            
+            _fubuRequest.Stub(x => x.Get<Case>()).Return(new Case());
+            ClassUnderTest.RightsFor(_fubuRequest).ShouldEqual(AuthorizationRight.None);
+        }
+
+        [Test]
         public void should_not_deny_access_if_none_of_the_data_restrictions_deny_it()
         {
             _theCase = new Case
@@ -42,6 +60,7 @@ namespace FubuFastPack.Testing.Security
         {
             _theCase = new Case
             {
+                Id = Guid.NewGuid(),
                 Condition = "Open",
                 Title = "A Different Title"
             };
