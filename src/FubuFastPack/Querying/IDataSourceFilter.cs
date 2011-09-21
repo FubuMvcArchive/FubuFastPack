@@ -7,5 +7,6 @@ namespace FubuFastPack.Querying
     {
         void WhereEqual(Expression<Func<T, object>> property, object value);
         void WhereNotEqual(Expression<Func<T, object>> property, object value);
+        void Or(Expression<Func<T, bool>> or);
     }
 }

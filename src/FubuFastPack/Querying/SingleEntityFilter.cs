@@ -45,6 +45,16 @@ namespace FubuFastPack.Querying
             }
         }
 
+        public void Or(Expression<Func<T, bool>> or)
+        {
+            var result = or.Compile();
+            var entityValue = result.Invoke(_domainEntity);
+            if(entityValue)
+            {
+                CanView = true;
+            }
+        }
+
         public void ApplyRestriction(IDataRestriction<T> restriction)
         {
             restriction.Apply(this);

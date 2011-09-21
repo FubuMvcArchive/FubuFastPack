@@ -28,6 +28,11 @@ namespace FubuFastPack.Querying
             _wheres.Add(expression);
         }
 
+        public void Or(Expression<Func<T, bool>> or)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<T> Filter(IQueryable<T> queryable)
         {
             _wheres.Each(x => queryable = queryable.Where(x));

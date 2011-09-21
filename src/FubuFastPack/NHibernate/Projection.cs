@@ -78,6 +78,11 @@ namespace FubuFastPack.NHibernate
             Where(property).IsNot(value);
         }
 
+        public void Or(Expression<Func<T, bool>> or)
+        {
+            _wheres.Add(Restrictions.Disjunction().Add(or));
+        }
+
         public int Count()
         {
             return Count(c => c);
