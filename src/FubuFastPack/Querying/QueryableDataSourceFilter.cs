@@ -33,6 +33,12 @@ namespace FubuFastPack.Querying
             throw new NotImplementedException();
         }
 
+        public void OrIsIn(Expression<Func<T, object>> property, ICollection<object> values)
+        {
+            var expression = new CollectionContainsPropertyOperation().GetPredicate(property, values);
+            _wheres.Add(expression);
+        }
+
         public IQueryable<T> Filter(IQueryable<T> queryable)
         {
             _wheres.Each(x => queryable = queryable.Where(x));
