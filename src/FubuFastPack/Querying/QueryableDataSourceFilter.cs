@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using FluentNHibernate.MappingModel;
 using FubuCore.Reflection.Expressions;
 
 namespace FubuFastPack.Querying
@@ -28,15 +29,13 @@ namespace FubuFastPack.Querying
             _wheres.Add(expression);
         }
 
-        public void Or(Expression<Func<T, bool>> or)
+        public void Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right)
         {
-            throw new NotImplementedException();
-        }
+            var orOptions = new OrOptions<T>();
+            left(orOptions);
+            right(orOptions);
+            _wheres.Add(orOptions.BuildOut());
 
-        public void OrIsIn(Expression<Func<T, object>> property, ICollection<object> values)
-        {
-            var expression = new CollectionContainsPropertyOperation().GetPredicate(property, values);
-            _wheres.Add(expression);
         }
 
         public IQueryable<T> Filter(IQueryable<T> queryable)
@@ -45,5 +44,34 @@ namespace FubuFastPack.Querying
 
             return queryable;
         }
+    }
+
+    public class OrOptions<T> : IOrOptions<T>
+    {
+        
+        public void WhereIn(Expression<Func<T, object>> property, IEnumerable<object> value)
+        {
+            o.Set(property, value);
+        }
+        
+        public void WhereEqual(Expression<Func<T, object>> property, object value)
+        {
+            o.Set(property, value);
+        }
+
+        private ComposableOrOperation o;
+        public Expression<Func<T, bool>> BuildOut()
+        {
+            var a = o.GetPredicateBuilder<T>();
+            return a;
+        }
+    }
+
+    public interface IOrOptions<T>
+    {
+        void WhereIn(Expression<Func<T, object>> property, IEnumerable<object> value);
+
+        void WhereEqual(Expression<Func<T, object>> property, object value);
+
     }
 }
