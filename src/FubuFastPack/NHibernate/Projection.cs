@@ -18,7 +18,8 @@ namespace FubuFastPack.NHibernate
         private readonly IList<ProjectionColumn<T>> _columns = new List<ProjectionColumn<T>>();
         private readonly ISession _session;
         private readonly List<ICriterion> _wheres = new List<ICriterion>();
-
+        private readonly List<ProjectionAlias> _whereAliases = new List<ProjectionAlias>();
+ 
         public Projection(ISession session)
         {
             MaxCount = INITIAL_MAX_PAGE_COUNT;
@@ -30,6 +31,38 @@ namespace FubuFastPack.NHibernate
         {
             get { return _wheres.Count(); }
         }
+
+        public IEnumerable<ProjectionAlias> Aliases {get
+        {
+            //var a = _columns.SelectMany(x => x.Aliases)
+            //    .Union(_whereAliases)
+            //    .Distinct();
+            //^^^^ this fails because PropertyInfo.GetHashCode() is a FAIL ^^^
+
+            //.Distinct() relies on GetHashCode() to determine if it has seen an item already
+            //since PropertyInfo.GetHashCode() is based on Object.GetHashCode()
+            //it is not sutible for this usage. Therefore we must hand 'distinct'
+            //list uses 'equality' rather than hash codes so switching to that.
+            //TODO: Show Jeremy
+            var result = new List<ProjectionAlias>();
+            foreach(var alias in _whereAliases)
+            {
+                if(!result.Contains(alias) && alias.PropertyAccessor != null)
+                {
+                    result.Add(alias);
+                }
+            }
+
+            foreach (var alias in _columns.SelectMany(x => x.Aliases))
+            {
+                if (!result.Contains(alias) && alias.PropertyAccessor != null)
+                {
+                    result.Add(alias);
+                }
+            }
+
+            return result;
+        }}
 
         public SortRule<T> SortBy { get; set; }
 
@@ -43,6 +76,17 @@ namespace FubuFastPack.NHibernate
         void IDataSourceFilter<T>.WhereNotEqual(Expression<Func<T, object>> property, object value)
         {
             Where(property).IsNot(value);
+        }
+
+        void IDataSourceFilter<T>.Or(Expression<Func<T, bool>> or)
+        {
+            _wheres.Add(Restrictions.Disjunction().Add(or));
+        }
+
+        void IDataSourceFilter<T>.OrIsIn(Expression<Func<T, object>> propertyName, ICollection<object> values)
+        {
+            var property = ReflectionHelper.GetProperty(propertyName).Name;
+            _wheres.Add(Restrictions.Disjunction().Add(Restrictions.In(property, values.ToArray())));
         }
 
         public int Count()
@@ -82,7 +126,7 @@ namespace FubuFastPack.NHibernate
         public IEnumerable GetAllData()
         {
             var criteria = _session.CreateCriteria(typeof (T));
-            criteria = _columns.AddAliases(criteria);
+            criteria = addAliases(criteria);
             criteria = addWheres(criteria);
             criteria = AddTheProjections(criteria);
 
@@ -101,7 +145,7 @@ namespace FubuFastPack.NHibernate
         public ICriteria GetFilteredCriteria()
         {
             var criteria = _session.CreateCriteria(typeof (T));
-            criteria = _columns.AddAliases(criteria);
+            criteria = addAliases(criteria);
             criteria = addWheres(criteria);
             return criteria;
         }
@@ -157,6 +201,8 @@ namespace FubuFastPack.NHibernate
 
         public WhereExpression Where(Expression<Func<T, object>> expression)
         {
+            var accessor = ReflectionHelper.GetAccessor(expression);
+            ProjectionAlias.For(accessor, false).Each(x => _whereAliases.Fill(x));
             return new WhereExpression(expression, _wheres);
         }
 
@@ -190,7 +236,7 @@ namespace FubuFastPack.NHibernate
         protected ICriteria criteriaForCount(Func<ICriteria, ICriteria> chain)
         {
             var criteria = _session.CreateCriteria(typeof (T));
-            criteria = _columns.AddAliases(criteria);
+            criteria = addAliases(criteria);
             criteria = addWheres(criteria);
             criteria = chain(criteria);
 
@@ -199,12 +245,23 @@ namespace FubuFastPack.NHibernate
             return criteria;
         }
 
+        private ICriteria addAliases(ICriteria criteria)
+        {
+            Aliases.Each(x => criteria = x.Apply(criteria));
+            return criteria;            
+        }
+
         public void OuterJoin(Accessor accessor)
         {
             var column = _columns.FirstOrDefault(c => c.PropertyAccessor == accessor);
             if (column != null)
             {
                 column.OuterJoin = true;
+            }
+            var alias = _whereAliases.FirstOrDefault(c => c.PropertyAccessor == accessor);
+            if(alias != null)
+            {
+                alias.OuterJoin = true;
             }
         }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using FubuCore.Reflection;
 using FubuFastPack.Domain;
@@ -42,6 +44,26 @@ namespace FubuFastPack.Querying
             else
             {
                 if (entityValue.Equals(value)) CanView = false;
+            }
+        }
+
+        public void Or(Expression<Func<T, bool>> or)
+        {
+            var result = or.Compile();
+            var entityValue = result.Invoke(_domainEntity);
+            if(entityValue)
+            {
+                CanView = true;
+            }
+        }
+
+        public void OrIsIn(Expression<Func<T, object>> property, ICollection<object> values)
+        {
+            var entityValue = ReflectionHelper.GetAccessor(property).GetValue(_domainEntity);
+            
+            if(values.Contains(entityValue))
+            {
+                CanView = true;
             }
         }
 

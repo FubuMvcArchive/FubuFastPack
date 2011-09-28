@@ -17,7 +17,13 @@ namespace FubuFastPack.Security
 
         public AuthorizationRight RightsFor(IFubuRequest request)
         {
-            var entityFilter = new SingleEntityFilter<T>(request.Get<T>());
+            var entity = request.Get<T>();
+            if(entity.IsNew())
+            {
+                return AuthorizationRight.None;
+            }
+
+            var entityFilter = new SingleEntityFilter<T>(entity);
             _dataRestrictions.Each(entityFilter.ApplyRestriction);
             return entityFilter.CanView ? AuthorizationRight.None : AuthorizationRight.Deny;
         }

@@ -9,6 +9,30 @@ namespace FubuFastPack.Testing.Querying
     public class SingleEntityFilterTester
     {
         [Test]
+        public void or_will_allow_viewing_if_the_or_clause_is_true()
+        {
+            var theCase = new Case();
+            theCase.Title = "The Title";
+
+            var filter = new SingleEntityFilter<Case>(theCase);
+            filter.Or(x=> x.Title == "The Title");
+            filter.CanView.ShouldBeTrue();
+        }
+
+        [Test]
+        public void or_will_not_affect_viewing_if_the_or_clause_is_false()
+        {
+            var theCase = new Case();
+            theCase.Title = "The Title";
+
+            var filter = new SingleEntityFilter<Case>(theCase);
+            filter.WhereEqual(x=> x.Title, "The Title");
+            filter.CanView.ShouldBeTrue();
+            filter.Or(x => x.Title == "not the title");
+            filter.CanView.ShouldBeTrue();
+        }
+       
+        [Test]
         public void where_equal_will_allow_viewing_if_the_entitys_property_is_a_specific_value()
         {
             var theCase = new Case();
