@@ -29,6 +29,16 @@ namespace FubuFastPack.Querying
             _wheres.Add(expression);
         }
 
+        public void Or(Expression<Func<T, bool>> or)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OrIsIn(Expression<Func<T, object>> property, ICollection<object> values)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right)
         {
             var orOptions = new OrOptions<T>();
