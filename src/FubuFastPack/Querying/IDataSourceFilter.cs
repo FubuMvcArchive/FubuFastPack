@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace FubuFastPack.Querying
@@ -8,7 +7,6 @@ namespace FubuFastPack.Querying
     {
         void WhereEqual(Expression<Func<T, object>> property, object value);
         void WhereNotEqual(Expression<Func<T, object>> property, object value);
-        void Or(Expression<Func<T, bool>> or);
-        void OrIsIn(Expression<Func<T, object>> property, ICollection<object> values);
+        void Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right);
     }
 }

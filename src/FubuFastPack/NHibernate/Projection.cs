@@ -78,16 +78,24 @@ namespace FubuFastPack.NHibernate
             Where(property).IsNot(value);
         }
 
-        void IDataSourceFilter<T>.Or(Expression<Func<T, bool>> or)
+        void IDataSourceFilter<T>.Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right)
         {
-            _wheres.Add(Restrictions.Disjunction().Add(or));
+            var orOptions = new OrOptions<T>();
+            left(orOptions);
+            right(orOptions);
+            _wheres.Add(Restrictions.Conjunction().Add(orOptions.BuildOut()));
         }
 
-        void IDataSourceFilter<T>.OrIsIn(Expression<Func<T, object>> propertyName, ICollection<object> values)
-        {
-            var property = ReflectionHelper.GetProperty(propertyName).Name;
-            _wheres.Add(Restrictions.Disjunction().Add(Restrictions.In(property, values.ToArray())));
-        }
+//        void IDataSourceFilter<T>.Or(Expression<Func<T, bool>> or)
+//        {
+//            _wheres.Add(Restrictions.Disjunction().Add(or));
+//        }
+//
+//        void IDataSourceFilter<T>.OrIsIn(Expression<Func<T, object>> propertyName, ICollection<object> values)
+//        {
+//            var property = ReflectionHelper.GetProperty(propertyName).Name;
+//            _wheres.Add(Restrictions.Disjunction().Add(Restrictions.In(property, values.ToArray())));
+//        }
 
         public int Count()
         {

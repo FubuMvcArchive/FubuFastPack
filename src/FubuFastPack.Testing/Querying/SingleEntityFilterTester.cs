@@ -9,18 +9,18 @@ namespace FubuFastPack.Testing.Querying
     public class SingleEntityFilterTester
     {
         [Test]
-        public void or_will_allow_viewing_if_the_or_clause_is_true()
+        public void or_will_allow_viewing_if_one_of_the_sides_is_true()
         {
             var theCase = new Case();
             theCase.Title = "The Title";
 
             var filter = new SingleEntityFilter<Case>(theCase);
-            filter.Or(x=> x.Title == "The Title");
+            filter.Or(x=> x.WhereEqual(y=> y.Title, "The Title"), x=> x.WhereEqual(y=> y.Title, "Not The Title"));
             filter.CanView.ShouldBeTrue();
         }
 
         [Test]
-        public void or_will_not_affect_viewing_if_the_or_clause_is_false()
+        public void or_will_not_allow_viewing_if_the_or_clause_is_false()
         {
             var theCase = new Case();
             theCase.Title = "The Title";
@@ -28,8 +28,8 @@ namespace FubuFastPack.Testing.Querying
             var filter = new SingleEntityFilter<Case>(theCase);
             filter.WhereEqual(x=> x.Title, "The Title");
             filter.CanView.ShouldBeTrue();
-            filter.Or(x => x.Title == "not the title");
-            filter.CanView.ShouldBeTrue();
+            filter.Or(x => x.WhereEqual(y => y.Title, "Not The Title"), x => x.WhereEqual(y => y.Title, "Not The Title"));
+            filter.CanView.ShouldBeFalse();
         }
        
         [Test]
