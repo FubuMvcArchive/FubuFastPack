@@ -43,7 +43,6 @@ namespace FubuFastPack.NHibernate
             //since PropertyInfo.GetHashCode() is based on Object.GetHashCode()
             //it is not sutible for this usage. Therefore we must hand 'distinct'
             //list uses 'equality' rather than hash codes so switching to that.
-            //TODO: Show Jeremy
             var result = new List<ProjectionAlias>();
             foreach(var alias in _whereAliases)
             {
@@ -83,19 +82,10 @@ namespace FubuFastPack.NHibernate
             var orOptions = new OrOptions<T>();
             left(orOptions);
             right(orOptions);
-            _wheres.Add(Restrictions.Conjunction().Add(orOptions.BuildOut()));
-        }
 
-//        void IDataSourceFilter<T>.Or(Expression<Func<T, bool>> or)
-//        {
-//            _wheres.Add(Restrictions.Disjunction().Add(or));
-//        }
-//
-//        void IDataSourceFilter<T>.OrIsIn(Expression<Func<T, object>> propertyName, ICollection<object> values)
-//        {
-//            var property = ReflectionHelper.GetProperty(propertyName).Name;
-//            _wheres.Add(Restrictions.Disjunction().Add(Restrictions.In(property, values.ToArray())));
-//        }
+            var criterion = ConvertExpressionIntoCriterion.ConvertOr(orOptions.BuildOut());
+            _wheres.Add(Restrictions.Conjunction().Add(criterion));
+        }
 
         public int Count()
         {
@@ -380,5 +370,24 @@ namespace FubuFastPack.NHibernate
         }
 
         #endregion
+    }
+
+    public static class ConvertExpressionIntoCriterion
+    {
+        public static ICriterion ConvertOr(System.Linq.Expressions.Expression exp)
+        {
+           var lambda = (LambdaExpression) exp;
+
+           var call = (MethodCallExpression)lambda.Body;
+           var collectionType = call.Object.Type.GetGenericArguments()[0];
+           var subCrit = DetachedCriteria.For(collectionType);
+           subCrit.SetProjection(Projections.Id());
+
+           var arg = (MemberExpression)call.Arguments.First();
+           
+           var propertyToCheck = arg.Member.Name;;
+
+           return Subqueries.PropertyIn(propertyToCheck + ".Id", subCrit);
+        }
     }
 }
