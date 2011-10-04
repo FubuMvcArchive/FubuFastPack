@@ -381,27 +381,36 @@ namespace FubuFastPack.NHibernate
     {
         public static ICriterion Convert(Expression exp)
         {
-            if(exp.NodeType == ExpressionType.Lambda)
+            try
             {
-                return ConvertLambda(exp);
+                if (exp.NodeType == ExpressionType.Lambda)
+                {
+                    return ConvertLambda(exp);
+                }
+
+                if (exp.NodeType == ExpressionType.OrElse)
+                {
+                    return ConvertBinary(exp);
+                }
+
+                if (exp.NodeType == ExpressionType.Call)
+                {
+                    return ConvertCall(exp);
+                }
+
+                if (exp.NodeType == ExpressionType.Equal)
+                {
+                    return ConvertEqual(exp);
+                }
+            }
+            catch (Exception ex)
+            {
+                var message ="I made a mess in my pants. Derp! I got a node type of '{0}' with expression '{1}'".ToFormat(exp.NodeType, exp.ToString());
+                throw new Exception(message, ex);
             }
 
-            if(exp.NodeType == ExpressionType.OrElse)
-            {
-                return ConvertBinary(exp);
-            }
-
-            if(exp.NodeType == ExpressionType.Call)
-            {
-                return ConvertCall(exp);
-            }
-            
-            if(exp.NodeType == ExpressionType.Equal)
-            {
-                return ConvertEqual(exp);
-            }
-
-            throw new Exception("I don't know what to do. Derp! I got a node type of '{0}' with expression '{1}'".ToFormat(exp.NodeType, exp.ToString()));
+            var message2 = "I don't know what to do. Derp! I got a node type of '{0}' with expression '{1}'".ToFormat(exp.NodeType, exp.ToString());
+            throw new Exception(message2);
         }
 
         private static ICriterion ConvertEqual(Expression exp)
