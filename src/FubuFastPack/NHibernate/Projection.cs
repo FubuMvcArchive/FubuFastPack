@@ -9,6 +9,7 @@ using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using NHibernate;
 using NHibernate.Criterion;
+using Expression = System.Linq.Expressions.Expression;
 
 namespace FubuFastPack.NHibernate
 {
@@ -83,7 +84,9 @@ namespace FubuFastPack.NHibernate
             left(orOptions);
             right(orOptions);
 
-            var criterion = ConvertExpressionIntoCriterion.ConvertOr(orOptions.BuildOut());
+            var exp = orOptions.BuildOut();
+            //what is exp
+            var criterion = ConvertExpressionIntoCriterion.Convert(orOptions.BuildOut());
             _wheres.Add(Restrictions.Conjunction().Add(criterion));
         }
 
@@ -372,13 +375,39 @@ namespace FubuFastPack.NHibernate
         #endregion
     }
 
-    public static class ConvertExpressionIntoCriterion
-    {
-        public static ICriterion ConvertOr(System.Linq.Expressions.Expression exp)
-        {
-           var lambda = (LambdaExpression) exp;
 
-           var call = (MethodCallExpression)lambda.Body;
+    public class ConvertExpressionIntoCriterion 
+    {
+        public static ICriterion Convert(Expression exp)
+        {
+            if(exp.NodeType == ExpressionType.Lambda)
+            {
+                return ConvertLambda(exp);
+            }
+
+            if(exp.NodeType == ExpressionType.OrElse)
+            {
+                return ConvertBinary(exp);
+            }
+
+            if(exp.NodeType == ExpressionType.Call)
+            {
+                return ConvertCall(exp);
+            }
+
+            throw new Exception("I don't know what to do. Derp!");
+        }
+
+        public static ICriterion ConvertBinary(Expression exp)
+        {
+            var b = (BinaryExpression) exp;
+
+            return global::NHibernate.Criterion.Expression.Or(Convert(b.Left), Convert(b.Right));
+        }
+
+        public static ICriterion ConvertCall(Expression exp)
+        {
+            var call = (MethodCallExpression) exp;
            var collectionType = call.Object.Type.GetGenericArguments()[0];
            var subCrit = DetachedCriteria.For(collectionType);
            subCrit.SetProjection(Projections.Id());
@@ -388,6 +417,12 @@ namespace FubuFastPack.NHibernate
            var propertyToCheck = arg.Member.Name;;
 
            return Subqueries.PropertyIn(propertyToCheck + ".Id", subCrit);
+        }
+
+        public static ICriterion ConvertLambda(Expression exp)
+        {
+            var lambda = (LambdaExpression) exp;
+            return Convert(lambda.Body);
         }
     }
 }
