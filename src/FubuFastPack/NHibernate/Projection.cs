@@ -10,6 +10,7 @@ using FubuFastPack.Querying;
 using NHibernate;
 using NHibernate.Criterion;
 using Expression = System.Linq.Expressions.Expression;
+using FubuCore;
 
 namespace FubuFastPack.NHibernate
 {
@@ -394,8 +395,22 @@ namespace FubuFastPack.NHibernate
             {
                 return ConvertCall(exp);
             }
+            
+            if(exp.NodeType == ExpressionType.Equal)
+            {
+                return ConvertEqual(exp);
+            }
 
-            throw new Exception("I don't know what to do. Derp!" + exp.ToString());
+            throw new Exception("I don't know what to do. Derp! I got a node type of '{0}' with expression '{1}'".ToFormat(exp.NodeType, exp.ToString()));
+        }
+
+        private static ICriterion ConvertEqual(Expression exp)
+        {
+            var a = (BinaryExpression) exp;
+            var c = (ConstantExpression)a.Right;
+            var name = ((MemberExpression) a.Left).Member.Name;
+            return global::NHibernate.Criterion.Expression.Eq(name, c.Value);
+
         }
 
         public static ICriterion ConvertBinary(Expression exp)
