@@ -395,7 +395,7 @@ namespace FubuFastPack.NHibernate
                 return ConvertCall(exp);
             }
 
-            throw new Exception("I don't know what to do. Derp!");
+            throw new Exception("I don't know what to do. Derp!" + exp.ToString());
         }
 
         public static ICriterion ConvertBinary(Expression exp)
