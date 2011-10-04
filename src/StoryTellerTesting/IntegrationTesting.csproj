@@ -137,6 +137,7 @@
     <Compile Include="FubuFastPack\NHibernate\ConfigurationSourceSmokeTester.cs" />
     <Compile Include="FubuFastPack\NHibernate\configuration_file_caching_smoke_tester.cs" />
     <Compile Include="FubuFastPack\NHibernate\find_type_by_persisted_class_name.cs" />
+    <Compile Include="FubuFastPack\NHibernate\ProjectionTester.cs" />
     <Compile Include="FubuFastPack\NHibernate\SqlRunnerSmokeTester.cs" />
     <Compile Include="FubuFastPack\Persistence\RepositorySmokeTester.cs" />
     <Compile Include="FubuFastPack\Validation\UniqueValidationIntegrationRuleTester.cs" />
