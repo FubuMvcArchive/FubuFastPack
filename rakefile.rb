@@ -26,7 +26,7 @@ desc "**Default**, compiles and runs tests"
 task :default => [:compile, :unit_test]
 
 desc "Target used for the CI server"
-task :ci => [:default,:package,"nuget:build"]
+task :ci => [:update_all_dependencies, :default, :history, :publish]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -71,7 +71,7 @@ end
 
 
 desc "Compiles the app"
-task :compile => [:clean, :version, :bundle_fast_pack] do
+task :compile => [:clean, :restore_if_missing, :version, :bundle_fast_pack] do
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/FubuFastPack.sln', :clrversion => CLR_TOOLS_VERSION
 
   copyOutputFiles "src/FubuFastPack/bin/#{COMPILE_TARGET}", "Fubu*.{dll,pdb}", props[:stage]
