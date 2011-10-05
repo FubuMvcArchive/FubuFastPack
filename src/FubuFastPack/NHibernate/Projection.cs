@@ -390,7 +390,7 @@ namespace FubuFastPack.NHibernate
 
                 if (exp.NodeType == ExpressionType.OrElse)
                 {
-                    return ConvertBinary(exp);
+                    return ConvertOrElse(exp);
                 }
 
                 if (exp.NodeType == ExpressionType.Call)
@@ -422,7 +422,7 @@ namespace FubuFastPack.NHibernate
 
         }
 
-        public static ICriterion ConvertBinary(Expression exp)
+        public static ICriterion ConvertOrElse(Expression exp)
         {
             var b = (BinaryExpression) exp;
 
@@ -432,11 +432,11 @@ namespace FubuFastPack.NHibernate
         public static ICriterion ConvertCall(Expression exp)
         {
             var call = (MethodCallExpression) exp;
-           var collectionType = call.Object.Type.GetGenericArguments()[0];
+            var collectionType = call.Arguments.Skip(1).First().Type;
            var subCrit = DetachedCriteria.For(collectionType);
            subCrit.SetProjection(Projections.Id());
 
-           var arg = (MemberExpression)call.Arguments.First();
+           var arg = (MemberExpression)call.Arguments.Skip(1).First();
            
            var propertyToCheck = arg.Member.Name;;
 
