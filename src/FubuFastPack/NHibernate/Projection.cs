@@ -87,7 +87,11 @@ namespace FubuFastPack.NHibernate
             right(orOptions);
 
             var orExpression = orOptions.BuildOut();
-            var criterion = ConvertExpressionIntoCriterion.Convert(orExpression);
+            var conv = new ConvertExpressionIntoCriterion<T>(this);
+
+            var criterion = conv.Convert(orExpression);
+            conv.AddAliases(aliases=>_whereAliases.Fill(aliases));
+
             _wheres.Add(Restrictions.Conjunction().Add(criterion));
         }
 
@@ -374,12 +378,27 @@ namespace FubuFastPack.NHibernate
         }
 
         #endregion
+
+
     }
 
 
-    public class ConvertExpressionIntoCriterion 
+    public class ConvertExpressionIntoCriterion<T> where T : DomainEntity
     {
-        public static ICriterion Convert(Expression exp)
+        private readonly List<ProjectionAlias> _whereAliases = new List<ProjectionAlias>();
+        private Projection<T> _projection;
+
+        public ConvertExpressionIntoCriterion(Projection<T> projection)
+        {
+            _projection = projection;
+        }
+
+        public void AddAliases(Action<List<ProjectionAlias>> action )
+        {
+            action(_whereAliases);
+        }
+
+        public ICriterion Convert(Expression exp)
         {
             try
             {
@@ -413,7 +432,7 @@ namespace FubuFastPack.NHibernate
             throw new Exception(message2);
         }
 
-        private static ICriterion ConvertEqual(Expression exp)
+        private ICriterion ConvertEqual(Expression exp)
         {
             var a = (BinaryExpression) exp;
             
@@ -421,14 +440,17 @@ namespace FubuFastPack.NHibernate
             var right = (ConstantExpression)a.Right;
 
             //need to walk the '.'s
+
+            var bits = getPath(left);
+            var accessor = ReflectionHelper.GetAccessor(left);
+            ProjectionAlias.For(accessor, false).Each(x => _whereAliases.Fill(x));
             
-            var path = getPath(left);
-            return global::NHibernate.Criterion.Expression.Eq(path, right.Value);
+            return global::NHibernate.Criterion.Expression.Eq(bits, right.Value);
 
         }
 
         //TODO: to fubucore?
-        private static string getPath(MemberExpression exp)
+        private string getPath(MemberExpression exp)
         {
             var stack = new Stack<string>();
             var exp1 = exp;
@@ -439,12 +461,10 @@ namespace FubuFastPack.NHibernate
                 exp1 = exp1.Expression as MemberExpression;
             }
 
-
-            var path = stack.Aggregate((l, r) => l + "." + r);
-            return path;
+            return stack.Aggregate((l,r)=>l+"."+r);
         }
 
-        public static ICriterion ConvertOrElse(Expression exp)
+        public ICriterion ConvertOrElse(Expression exp)
         {
             var b = (BinaryExpression) exp;
 
@@ -454,7 +474,7 @@ namespace FubuFastPack.NHibernate
             return global::NHibernate.Criterion.Expression.Or(left, right);
         }
 
-        public static ICriterion ConvertCall(Expression exp)
+        public ICriterion ConvertCall(Expression exp)
         {
             var call = (MethodCallExpression) exp;
             var collectionType = call.Arguments.Skip(1).First().Type;
@@ -468,7 +488,7 @@ namespace FubuFastPack.NHibernate
            return Subqueries.PropertyIn(propertyToCheck + ".Id", subCrit);
         }
 
-        public static ICriterion ConvertLambda(Expression exp)
+        public ICriterion ConvertLambda(Expression exp)
         {
             var lambda = (LambdaExpression) exp;
             return Convert(lambda.Body);
