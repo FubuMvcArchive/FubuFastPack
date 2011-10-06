@@ -11,6 +11,7 @@ using FubuTestingSupport;
 using NHibernate;
 using NUnit.Framework;
 using FubuValidation;
+using StructureMap;
 
 namespace IntegrationTesting.FubuFastPack.NHibernate
 {
@@ -21,6 +22,21 @@ namespace IntegrationTesting.FubuFastPack.NHibernate
         protected  void beforeEach()
         {
             DatabaseDriver.GetFullFastPackContainer();
+           
+            
+
+            using (var container = DatabaseDriver.ContainerWithDatabase())
+            {
+                container.Configure(x => x.UseOnDemandNHibernateTransactionBoundary());
+            var session = container.GetInstance<ISession>();
+                xxx(session, container);
+
+
+            }
+        }
+
+        public void xxx(ISession session, IContainer container)
+        {
             var @case = new Case();
             @case.Identifier = "1";
             @case.Number = 0;
@@ -29,57 +45,48 @@ namespace IntegrationTesting.FubuFastPack.NHibernate
             person1.Name = "Ryan";
             var person2 = new Person();
             person2.Name = "Brandon";
-            
 
-            using (var container = DatabaseDriver.ContainerWithDatabase())
-            {
-                container.Configure(x => x.UseOnDemandNHibernateTransactionBoundary());
+            session.FlushMode = FlushMode.Always;
 
-
-                var session = container.GetInstance<ISession>();
-                session.FlushMode = FlushMode.Always;
-
-                session.Save(person1);
-                session.Save(person2);
-                @case.Person = person1;
-                session.SaveOrUpdate(@case);
-                session.Flush();
+            session.Save(person1);
+            session.Save(person2);
+            @case.Person = person1;
+            session.SaveOrUpdate(@case);
+            session.Flush();
 
 
-                session.CreateCriteria(typeof(Case)).List<Case>().Any()
-                    .ShouldBeTrue();
+            session.CreateCriteria(typeof (Case)).List<Case>().Any()
+                .ShouldBeTrue();
 
-                var case2 = session.Get<Case>(@case.Id);
+            var case2 = session.Get<Case>(@case.Id);
 
-                @case.Identifier.ShouldEqual(case2.Identifier);
-                @case.Number.ShouldEqual(case2.Number);
-            }
+            @case.Identifier.ShouldEqual(case2.Identifier);
+            @case.Number.ShouldEqual(case2.Number);
         }
 
-
-        
         [Test]
         public void projection_stuff()
         {
             
 
             using (var container = DatabaseDriver.ContainerWithDatabase())
-            using(var trx = container.GetInstance<ITransactionBoundary>())
             {
-                trx.Start();
+                container.Configure(x => x.UseOnDemandNHibernateTransactionBoundary());
 
                 var session = container.GetInstance<ISession>();
+
+                xxx(session, container);
                 var persons = session.CreateCriteria<Person>().List<Person>();
                 
+                
+                var classUnderTest = container.GetInstance<Projection<Case>>();
 
-                var ClassUnderTest = container.GetInstance<Projection<Case>>();
-
-                ClassUnderTest.AddColumn(x => x.Person.Name);
-                ClassUnderTest.AddColumn(x => x.Number);
-                (ClassUnderTest as IDataSourceFilter<Case>).Or(x => x.WhereEqual(y => y.Number, 1),
+                classUnderTest.AddColumn(x => x.Person.Name);
+                classUnderTest.AddColumn(x => x.Number);
+                (classUnderTest as IDataSourceFilter<Case>).Or(x => x.WhereEqual(y => y.Person.Name, "Ryan"),
                                                                x =>
                                                                x.WhereIn(y => y.Person, persons));
-                ClassUnderTest.GetAllData().Count().ShouldEqual(1);
+                classUnderTest.GetAllData().Count().ShouldEqual(1);
             }
         }
     }

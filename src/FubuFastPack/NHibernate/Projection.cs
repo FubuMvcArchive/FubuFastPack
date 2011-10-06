@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using FubuCore.Reflection;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
@@ -85,9 +86,8 @@ namespace FubuFastPack.NHibernate
             left(orOptions);
             right(orOptions);
 
-            var exp = orOptions.BuildOut();
-            //what is exp
-            var criterion = ConvertExpressionIntoCriterion.Convert(orOptions.BuildOut());
+            var orExpression = orOptions.BuildOut();
+            var criterion = ConvertExpressionIntoCriterion.Convert(orExpression);
             _wheres.Add(Restrictions.Conjunction().Add(criterion));
         }
 
@@ -416,17 +416,42 @@ namespace FubuFastPack.NHibernate
         private static ICriterion ConvertEqual(Expression exp)
         {
             var a = (BinaryExpression) exp;
-            var c = (ConstantExpression)a.Right;
-            var name = ((MemberExpression) a.Left).Member.Name;
-            return global::NHibernate.Criterion.Expression.Eq(name, c.Value);
+            
+            var left = (MemberExpression) a.Left;
+            var right = (ConstantExpression)a.Right;
 
+            //need to walk the '.'s
+            
+            var path = getPath(left);
+            return global::NHibernate.Criterion.Expression.Eq(path, right.Value);
+
+        }
+
+        //TODO: to fubucore?
+        private static string getPath(MemberExpression exp)
+        {
+            var stack = new Stack<string>();
+            var exp1 = exp;
+
+            while (exp1 != null)
+            {
+                stack.Push(exp1.Member.Name);
+                exp1 = exp1.Expression as MemberExpression;
+            }
+
+
+            var path = stack.Aggregate((l, r) => l + "." + r);
+            return path;
         }
 
         public static ICriterion ConvertOrElse(Expression exp)
         {
             var b = (BinaryExpression) exp;
 
-            return global::NHibernate.Criterion.Expression.Or(Convert(b.Left), Convert(b.Right));
+            var left = Convert(b.Left);
+            var right = Convert(b.Right);
+
+            return global::NHibernate.Criterion.Expression.Or(left, right);
         }
 
         public static ICriterion ConvertCall(Expression exp)
