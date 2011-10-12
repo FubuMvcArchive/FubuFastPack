@@ -44,6 +44,7 @@ namespace FubuFastPack.StructureMap
             registry.For<IValidationSource>().Add<UniqueValidationSource>();
             registry.ForSingletonOf<IFieldRulesRegistry>().Add<FieldRulesRegistry>();
             registry.For<IValidationSource>().Add<FieldRuleSource>();
+            registry.For<IValidationQuery>().Add<ValidationQuery>();
 
             var convention = new ValidationConvention();
             registry.Scan(x =>
