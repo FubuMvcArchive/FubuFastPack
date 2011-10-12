@@ -46,7 +46,7 @@ namespace FubuFastPack.JqGrid
             var call = typeof (GridActionCall<>).CloseAndBuildAs<ActionCall>(t);
             chain.AddToEnd(call);
 
-            t.GetAllAttributes<AuthorizationAttribute>().Each(att => att.Alter(call));
+            t.GetAllAttributes<ModifyChainAttribute>().Each(att => att.Alter(call));
 
             chain.MakeSymmetricJson();
         }
