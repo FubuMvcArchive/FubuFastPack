@@ -48,7 +48,7 @@ namespace FubuFastPack.JqGrid
 
             t.GetAllAttributes<ModifyChainAttribute>().Each(att => att.Alter(call));
 
-            chain.MakeSymmetricJson();
+            chain.MakeAsymmetricJson();
         }
     }
 }
