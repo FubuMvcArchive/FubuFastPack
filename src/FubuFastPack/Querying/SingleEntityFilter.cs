@@ -47,13 +47,22 @@ namespace FubuFastPack.Querying
 
         public void Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right)
         {
+            Or(new []{left, right});
+        }
+
+
+        public void Or(Action<IOrOptions<T>>[] orOperations)
+        {
             var orOptions = new OrOptions<T>();
-            left(orOptions);
-            right(orOptions);
+            foreach (var orOperation in orOperations)
+            {
+                orOperation(orOptions);
+            }
             var compile = orOptions.BuildOut().Compile();
             CanView = compile.Invoke(_domainEntity);
+            
         }
-               
+
         public void ApplyRestriction(IDataRestriction<T> restriction)
         {
             restriction.Apply(this);

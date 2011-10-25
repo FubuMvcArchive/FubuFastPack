@@ -30,9 +30,16 @@ namespace FubuFastPack.Querying
 
         public void Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right)
         {
+            Or(new[]{left,right});
+        }
+
+        public void Or(params Action<IOrOptions<T>>[] orClauses)
+        {
             var orOptions = new OrOptions<T>();
-            left(orOptions);
-            right(orOptions);
+            foreach (var clause in orClauses)
+            {
+                clause(orOptions);
+            }
             _wheres.Add(orOptions.BuildOut());
 
         }
@@ -47,21 +54,21 @@ namespace FubuFastPack.Querying
 
     public class OrOptions<T> : IOrOptions<T>
     {
-        
+        private ComposableOrOperation _orOperations = new ComposableOrOperation();
+
         public void WhereIn(Expression<Func<T, object>> property, IEnumerable<object> value)
         {
-            o.Set(property, value);
+            _orOperations.Set(property, value);
         }
         
         public void WhereEqual(Expression<Func<T, object>> property, object value)
         {
-            o.Set(property, value);
+            _orOperations.Set(property, value);
         }
 
-        private ComposableOrOperation o = new ComposableOrOperation();
         public Expression<Func<T, bool>> BuildOut()
         {
-            var a = o.GetPredicateBuilder<T>();
+            var a = _orOperations.GetPredicateBuilder<T>();
             return a;
         }
     }

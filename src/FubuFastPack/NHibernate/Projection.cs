@@ -82,9 +82,16 @@ namespace FubuFastPack.NHibernate
 
         void IDataSourceFilter<T>.Or(Action<IOrOptions<T>> left, Action<IOrOptions<T>> right)
         {
+            ((IDataSourceFilter<T>)this).Or(new []{left, right});
+        }
+
+        void IDataSourceFilter<T>.Or(params Action<IOrOptions<T>>[] orOperations)
+        {
             var orOptions = new OrOptions<T>();
-            left(orOptions);
-            right(orOptions);
+            foreach (var orOperation in orOperations)
+            {
+                orOperation(orOptions);
+            }
 
             var orExpression = orOptions.BuildOut();
             var conv = new ConvertExpressionIntoCriterion<T>(this);
