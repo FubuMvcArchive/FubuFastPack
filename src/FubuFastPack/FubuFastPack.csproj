@@ -157,6 +157,7 @@
     <Compile Include="JqGrid\SmartGridException.cs" />
     <Compile Include="JqGrid\SmartGridService.cs" />
     <Compile Include="Lists\Classes.cs" />
+    <Compile Include="NHibernate\ConvertExpressionIntoCriterion.cs" />
     <Compile Include="NHibernate\ExtendedLinqToHqlGeneratorRegistry.cs" />
     <Compile Include="NonExistentEntityException.cs" />
     <Compile Include="Querying\FilterRule.cs" />

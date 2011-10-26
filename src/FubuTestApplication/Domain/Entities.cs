@@ -49,6 +49,8 @@ namespace FubuTestApplication.Domain
 
         public virtual Person Person { get; set; }
 
+        public virtual bool IsSensitive { get; set; }
+
         public override string ToString()
         {
             return string.Format("{0}, Identifier: {1}", base.ToString(), Identifier);
@@ -85,6 +87,7 @@ namespace FubuTestApplication.Domain
             Map(x => x.Priority);
             Map(x => x.CaseType);
             Map(x => x.Number);
+            Map(x => x.IsSensitive);
 
             References(x => x.Person).Cascade.All();
         }
