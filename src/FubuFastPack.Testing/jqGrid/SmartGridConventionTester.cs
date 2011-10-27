@@ -85,8 +85,6 @@ namespace FubuFastPack.Testing.jqGrid
                 .Packages(x => x.Assembly(typeof(ISmartGrid).Assembly))
                 .Bootstrap();
 
-            PackageRegistry.AssertNoFailures();
-
             container.GetInstance<ISmartGridHarness>("Fake1").ShouldBeOfType<SmartGridHarness<Fake1Grid>>();
             container.GetInstance<ISmartGridHarness>("Fake2").ShouldBeOfType<SmartGridHarness<Fake2Grid>>();
         }
