@@ -30,7 +30,7 @@ namespace FubuTestApplication
 
                 // TODO -- convenience method here?
                 .Packages(x => x.Assembly(typeof (IGridColumn).Assembly))
-                .Bootstrap(RouteTable.Routes);
+                .Bootstrap();
 
             PackageRegistry.AssertNoFailures();
         }

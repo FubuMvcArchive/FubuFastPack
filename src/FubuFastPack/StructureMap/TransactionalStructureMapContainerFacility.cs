@@ -49,6 +49,14 @@ namespace FubuFastPack.StructureMap
 
         private void invokeRequestedBehavior(IContainer c)
         {
+            c.Configure(cfg =>
+            {
+                _arguments.EachService((type, value) =>
+                {
+                    cfg.For(type).Use(value);
+                });
+            });
+            
             var behavior = c.GetInstance<IActionBehavior>(_arguments.ToExplicitArgs(), _behaviorId.ToString());
             behavior.Invoke();
         }
