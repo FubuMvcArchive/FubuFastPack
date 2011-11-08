@@ -5,7 +5,9 @@ using FubuFastPack.JqGrid;
 using FubuFastPack.Persistence;
 using FubuFastPack.Querying;
 using FubuFastPack.StructureMap;
+using FubuFastPack.Testing.jqGrid;
 using FubuMVC.Core;
+using FubuMVC.Core.Http;
 using FubuMVC.Core.Packaging;
 using FubuMVC.StructureMap;
 using FubuTestingSupport;
@@ -28,6 +30,7 @@ namespace FubuFastPack.Testing
                 x.For<IRepository>().Use<InMemoryRepository>();
                 x.For<IEntityFinder>().Use<EntityFinder>();
                 x.For<IEntityFinderCache>().Use<StructureMapEntityFinderCache>();
+                x.For<ICurrentHttpRequest>().Use<FakeCurrentHttpRequest>();
             });
             new FubuFastPackRegistryExtension().Configure(registry);
 

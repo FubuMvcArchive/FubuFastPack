@@ -4,6 +4,7 @@ using FubuFastPack.Persistence;
 using FubuFastPack.Testing.Security;
 using FubuMVC.Core;
 using FubuMVC.Core.Diagnostics.HtmlWriting;
+using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Security;
@@ -78,6 +79,7 @@ namespace FubuFastPack.Testing.jqGrid
                 x.For<IRepository>().Use<InMemoryRepository>();
                 x.For<IEntityFinder>().Use<EntityFinder>();
                 x.For<IEntityFinderCache>().Use<StructureMapEntityFinderCache>();
+                x.For<ICurrentHttpRequest>().Use<FakeCurrentHttpRequest>();
             });
 
             FubuApplication.For(() => theRegistry)
@@ -103,5 +105,28 @@ namespace FubuFastPack.Testing.jqGrid
     public class Fake2Grid : ProjectionGrid<Case>
     {
         
+    }
+
+    public class FakeCurrentHttpRequest : ICurrentHttpRequest
+    {
+        public string RawUrl()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string RelativeUrl()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string ToFullUrl(string url)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string HttpMethod()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
