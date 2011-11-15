@@ -69,5 +69,10 @@ namespace FubuTestApplication
         {
             get { throw new NotImplementedException(); }
         }
+
+        void IFubuPage.Write(object content)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,7 +8,6 @@ using FubuFastPack.StructureMap;
 using FubuFastPack.Testing.jqGrid;
 using FubuMVC.Core;
 using FubuMVC.Core.Http;
-using FubuMVC.Core.Packaging;
 using FubuMVC.StructureMap;
 using FubuTestingSupport;
 using NUnit.Framework;
