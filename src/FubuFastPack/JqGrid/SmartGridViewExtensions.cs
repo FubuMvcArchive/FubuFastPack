@@ -1,5 +1,4 @@
 ﻿using System;
-using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
@@ -17,7 +16,6 @@ namespace FubuFastPack.JqGrid
         {
             var pool = new TypePool(null);
             pool.IgnoreCallingAssembly();
-            pool.ShouldScanAssemblies = true;
 
             var expression = new AppliesToExpression(pool);
             configure(expression);
