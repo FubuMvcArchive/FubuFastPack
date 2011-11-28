@@ -104,12 +104,12 @@
 
 
 $.fn.asQueryBuilder.defaults =
-{
-    clearCriteriaSelector: "#search-criteria-cancel",
-    addCriteriaSelector: "#add",
-    removeCriteriaTemplateSelector: "#removeFilter",
-    runQuerySelector: "#search-criteria-search"
-};
+    {
+        clearCriteriaSelector: "#search-criteria-cancel",
+        addCriteriaSelector: "#add",
+        removeCriteriaTemplateSelector: "#removeFilter",
+        runQuerySelector: "#search-criteria-search"
+    };
 
 function buildQueryOptions(onFormClear) {search-criteria-search
     return {
@@ -194,6 +194,9 @@ $.fn.asFilterRow = function(templates, options, div) {
         .change(row.changeProperty).get(0);
 
     row.changeOperator = function() {
+        // grab the old value if its available
+        var value = row.editor ?  row.editor.getValue() : undefined;
+
         $(row.editorCell).empty();
 
         // go find the editor
@@ -209,6 +212,9 @@ $.fn.asFilterRow = function(templates, options, div) {
 
         row.editor = template.get(0);
         $.fn.asQueryBuilder.editors[editorName](row.editor);
+
+        // set the editor back to its old value
+        row.editor.setValue(value);
     };
 
     row.validate = function() {
