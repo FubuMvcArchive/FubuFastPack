@@ -189,10 +189,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sets.script.config" />
+    <Content Include="sets.asset.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="main.script.config" />
+    <Content Include="main.asset.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
