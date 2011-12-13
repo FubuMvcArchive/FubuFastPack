@@ -33,3 +33,5 @@ fubu-content
 spark.zip
 deployment/bottles/*.zip
 src/packages
+
+src/FubuFastPack.sln.DotSettings.user
