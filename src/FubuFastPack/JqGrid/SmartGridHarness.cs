@@ -10,13 +10,12 @@ using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuLocalization;
 using FubuMVC.Core;
-using FubuMVC.Core.Urls;
 using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {
     // TODO -- only build the grid once
-    public class SmartGridHarness<T> : ISmartGridHarness where T : ISmartGrid
+    public class SmartGridHarness<TGrid> : ISmartGridHarness where TGrid : ISmartGrid
     {
         private readonly Cache<string, object> _args = new Cache<string, object>();
         private readonly IQueryService _queryService;
@@ -36,20 +35,20 @@ namespace FubuFastPack.JqGrid
 
         public Type GridType
         {
-            get { return typeof (T); }
+            get { return typeof (TGrid); }
         }
 
         // TODO -- hit this with StoryTeller
-        public IEnumerable<FilteredProperty> FilteredProperties(T grid)
+        public IEnumerable<FilteredProperty> FilteredProperties(TGrid grid)
         {
             return grid.AllFilteredProperties(_queryService);
         }
 
-        public T BuildGrid()
+        public TGrid BuildGrid()
         {
             var args = buildArgs();
 
-            var grid = (T) Activator.CreateInstance(typeof (T), args);
+            var grid = (TGrid) Activator.CreateInstance(typeof (TGrid), args);
             grid.ApplyPolicies(_globalPolicies);
 
             return grid;
@@ -122,12 +121,12 @@ namespace FubuFastPack.JqGrid
 
         private ConstructorInfo getConstructor()
         {
-            return typeof (T).GetConstructors().Single();
+            return typeof (TGrid).GetConstructors().Single();
         }
 
         public string GetUrl()
         {
-            var url = _endpointService.EndpointFor(new GridRequest<T>()).Url;
+            var url = _endpointService.EndpointFor(new GridRequest<TGrid>()).Url;
 
             url += GetQuerystring();
 
@@ -157,7 +156,7 @@ namespace FubuFastPack.JqGrid
             return "{0}={1}".ToFormat(key, stringValue);
         }
 
-        public GridResults Data(GridRequest<T> input)
+        public GridResults Data(GridRequest<TGrid> input)
         {
             return BuildGrid().Invoke(_services, input.ToDataRequest());
         }
@@ -181,7 +180,7 @@ namespace FubuFastPack.JqGrid
         // TODO -- get an E to E test on this mess
         public Guid IdOfFirstResult()
         {
-            var request = new GridRequest<T>(){
+            var request = new GridRequest<TGrid>(){
                 page = 1,
                 rows = 1
             };
@@ -191,7 +190,7 @@ namespace FubuFastPack.JqGrid
         }
 
         // TODO -- get a UT against this
-        public DataTable ToDataTable(GridRequest<T> input)
+        public DataTable ToDataTable(GridRequest<TGrid> input)
         {
             var grid = BuildGrid();
 
@@ -244,16 +243,16 @@ namespace FubuFastPack.JqGrid
             return buildJqModel(grid);
         }
 
-        private JqGridModel buildJqModel(T grid)
+        private JqGridModel buildJqModel(TGrid grid)
         {
-            var gridName = typeof (T).NameForGrid();
+            var gridName = typeof (TGrid).NameForGrid();
             var definition = grid.Definition;
             var sorting = definition.SortOrder();
 
             return new JqGridModel{
                 colModel = definition.Columns.SelectMany(x => x.ToDictionary()).ToArray(),
                 gridName = gridName,
-                containerName = typeof(T).ContainerNameForGrid(),
+                containerName = typeof(TGrid).ContainerNameForGrid(),
                 arguments = GetArgumentsAsString().Join(","),
                 url = GetUrl(),
                 headers = definition.Columns.SelectMany(x => x.Headers()).ToArray(),
@@ -296,8 +295,8 @@ namespace FubuFastPack.JqGrid
                 CanSaveQuery = grid.Definition.CanSaveQuery,
                 FilteredProperties = FilteredProperties(grid),
                 GridModel = buildJqModel(grid),
-                GridName = typeof(T).NameForGrid(),
-                GridType = typeof(T),
+                GridName = typeof(TGrid).NameForGrid(),
+                GridType = typeof(TGrid),
                 HeaderText = grid.GetHeader()
             };
 
@@ -308,7 +307,7 @@ namespace FubuFastPack.JqGrid
             return model;
         }
 
-        private void setupCreateNewProperties(T grid, GridViewModel model)
+        private void setupCreateNewProperties(TGrid grid, GridViewModel model)
         {
             if (!grid.Definition.AllowCreationOfNew) return;
 

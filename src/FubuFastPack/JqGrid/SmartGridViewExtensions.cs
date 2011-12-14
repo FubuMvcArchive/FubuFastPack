@@ -64,11 +64,6 @@ namespace FubuFastPack.JqGrid
             return gridType.NameForGrid() + "-label";
         }
 
-        public static HtmlTag SmartGridFor<T>(this IFubuPage page, int? initialRows) where T : ISmartGrid
-        {
-            return page.SmartGridFor<T>(initialRows, h => { });
-        }
-
         public static HtmlTag DisabledSmartGridFor<TGrid>(this IFubuPage page, int? initialRows) where TGrid : ISmartGrid
         {
             var tag = page.SmartGridFor<TGrid>(initialRows, h => { });
@@ -80,6 +75,11 @@ namespace FubuFastPack.JqGrid
             return tag;
         }
 
+        public static HtmlTag SmartGridFor<T>(this IFubuPage page, int? initialRows) where T : ISmartGrid
+        {
+            return page.SmartGridFor<T>(initialRows, h => { });
+        }
+
         public static HtmlTag SmartGridFor<TGrid>(this IFubuPage page, int? initialRows, params object[] arguments)
             where TGrid : ISmartGrid
         {
@@ -87,16 +87,16 @@ namespace FubuFastPack.JqGrid
         }
 
         // TODO -- End to End stuff on this one
-        private static HtmlTag SmartGridFor<T>(this IFubuPage page, int? initialRows,
-                                               Action<SmartGridHarness<T>> modification) where T : ISmartGrid
+        private static HtmlTag SmartGridFor<TGrid>(this IFubuPage page, int? initialRows,
+                                               Action<SmartGridHarness<TGrid>> modification) where TGrid : ISmartGrid
         {
-            var endpoint = page.Get<IEndpointService>().EndpointFor<SmartGridHarness<T>>(x => x.Data(null));
+            var endpoint = page.Get<IEndpointService>().EndpointFor<SmartGridHarness<TGrid>>(x => x.Data(null));
             if (!endpoint.IsAuthorized)
             {
                 return HtmlTag.Empty();
             }
 
-            var harness = page.Get<SmartGridHarness<T>>();
+            var harness = page.Get<SmartGridHarness<TGrid>>();
             modification(harness);
 
             var model = harness.BuildJqModel();
