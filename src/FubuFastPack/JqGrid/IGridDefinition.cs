@@ -10,5 +10,6 @@ namespace FubuFastPack.JqGrid
         bool AllowCreationOfNew { get; set; }
         bool CanSaveQuery { get; }
         SortOrder SortOrder();
+        void RemoveColumn(IGridColumn column);
     }
 }

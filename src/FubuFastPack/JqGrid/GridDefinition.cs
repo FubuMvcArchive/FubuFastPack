@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FubuCore.Reflection;
-using FubuCore.Util;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 
@@ -63,6 +62,11 @@ namespace FubuFastPack.JqGrid
         public IEnumerable<IGridColumn> Columns
         {
             get { return _columns; }
+        }
+
+        public void RemoveColumn(IGridColumn column)
+        {
+            _columns.Remove(column);
         }
 
         public IEnumerable<Accessor> SelectedAccessors

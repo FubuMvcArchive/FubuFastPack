@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using FubuCore;
 using FubuCore.Reflection;
-using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;
 
 namespace FubuFastPack.JqGrid

@@ -155,7 +155,9 @@
     <Compile Include="JqGrid\GridColumnBase.cs" />
     <Compile Include="JqGrid\GridRequest.cs" />
     <Compile Include="JqGrid\GridViewModel.cs" />
+    <Compile Include="JqGrid\IGridPolicy.cs" />
     <Compile Include="JqGrid\ISmartGridHarness.cs" />
+    <Compile Include="JqGrid\ISmartGridService.cs" />
     <Compile Include="JqGrid\jqGridModel.cs" />
     <Compile Include="JqGrid\SmartGridException.cs" />
     <Compile Include="JqGrid\SmartGridService.cs" />

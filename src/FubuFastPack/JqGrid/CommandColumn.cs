@@ -66,6 +66,11 @@ namespace FubuFastPack.JqGrid
             };
         }
 
+        public Accessor Accessor
+        {
+            get { return _accessor; }
+        }
+
         public IEnumerable<Accessor> SelectAccessors()
         {
             yield return _accessor;

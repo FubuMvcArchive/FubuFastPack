@@ -34,6 +34,11 @@ namespace FubuFastPack.JqGrid
             return dto => dto["Id"] = getter().ToString();
         }
 
+        public Accessor Accessor
+        {
+            get { return _accessor; }
+        }
+
         public IEnumerable<Accessor> SelectAccessors()
         {
             yield return _accessor;
