@@ -7,7 +7,6 @@ using FubuFastPack.JqGrid;
 using FubuFastPack.NHibernate;
 using FubuFastPack.Querying;
 using FubuFastPack.Validation;
-using FubuMVC.Core.Packaging;
 using FubuValidation;
 using FubuValidation.Fields;
 using StructureMap;
@@ -25,7 +24,7 @@ namespace FubuFastPack.StructureMap
             For<IQueryService>().Use<QueryService>();
             For(typeof (Projection<>)).LifecycleIs(InstanceScope.Unique).Use(typeof (Projection<>));
 
-
+            For<IGridPolicy>().Add<AuthorizationGridPolicy>();
         }
     }
 

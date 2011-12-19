@@ -1,5 +1,4 @@
 using Bottles;
-using FubuMVC.Core.Packaging;
 using FubuTestingSupport;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -29,6 +28,8 @@ namespace FubuFastPack.Testing
 
             service.AssertWasCalled(x => x.Do("this"));
         }
+
+
     }
 
     public interface IService

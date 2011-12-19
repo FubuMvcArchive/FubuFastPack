@@ -110,6 +110,7 @@
     <Compile Include="jqGrid\BinaryFilterHandlerTester.cs" />
     <Compile Include="jqGrid\EntityDTOTester.cs" />
     <Compile Include="jqGrid\FilterColumnTester.cs" />
+    <Compile Include="jqGrid\GridColumnAuthorizationTester.cs" />
     <Compile Include="jqGrid\GridColumnTester.cs" />
     <Compile Include="jqGrid\GridDefinitionTester.cs" />
     <Compile Include="jqGrid\GridRequestTester.cs" />
