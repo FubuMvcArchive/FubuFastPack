@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
+using FubuCore;
 using FubuCore.Reflection;
 using FubuFastPack.Querying;
 using FubuLocalization;
+using FubuMVC.Core.Urls;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {
-    public abstract class GridColumnBase<T, TColumnType> where TColumnType : class
+    public abstract class GridColumnBase<T, TColumnType> : IGridColumn where TColumnType : class
     {
         private readonly Accessor _accessor;
         private Accessor _headerAccessor;
@@ -27,6 +29,16 @@ namespace FubuFastPack.JqGrid
             _accessor = accessor;
             _headerAccessor = accessor;
             _expression = accessor.ToExpression<T>();
+        }
+
+        public abstract IEnumerable<IDictionary<string, object>> ToDictionary();
+        public abstract Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls);
+        public abstract IEnumerable<Accessor> SelectAccessors();
+        public abstract IEnumerable<Accessor> AllAccessors();
+        public abstract IEnumerable<string> Headers();
+        public virtual ColumnAuthorizationAction ApplyAuthorization(IServiceLocator services)
+        {
+            return ColumnAuthorizationAction.KeepColumn;
         }
 
         public Accessor Accessor

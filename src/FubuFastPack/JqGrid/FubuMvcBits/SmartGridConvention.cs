@@ -5,7 +5,6 @@ using FubuCore.Reflection;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
-using FubuMVC.Core.Security;
 using FubuMVC.Core.Resources.Conneg;
 
 namespace FubuFastPack.JqGrid

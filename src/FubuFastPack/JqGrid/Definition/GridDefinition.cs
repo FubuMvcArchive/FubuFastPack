@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using FubuCore.Reflection;
@@ -8,6 +9,7 @@ using FubuFastPack.Querying;
 
 namespace FubuFastPack.JqGrid
 {
+    [DebuggerDisplay("Cols:{_columns.Count}")]
     public class GridDefinition<T> : IGridDefinition where T : DomainEntity
     {
         private const int INITIAL_MAX_PAGE_COUNT = 1000;
@@ -59,6 +61,7 @@ namespace FubuFastPack.JqGrid
             get; set;
         }
 
+        //security check here?
         public IEnumerable<IGridColumn> Columns
         {
             get { return _columns; }

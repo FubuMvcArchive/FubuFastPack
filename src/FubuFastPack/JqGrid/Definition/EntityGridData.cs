@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using FubuCore.Reflection;
-using NHibernate;
 using FubuFastPack.Domain;
 
 namespace FubuFastPack.JqGrid
 {
-
     public class EntityGridData : IGridData
     {
         private readonly Queue<object> _records;
@@ -41,30 +38,26 @@ namespace FubuFastPack.JqGrid
         }
     }
 
-
-    public class ProjectionGridData<T> : IGridData
+    public class EntityGridData<T> : IGridData
     {
-        private readonly IList<Accessor> _accessors;
-        private readonly Queue<object> _records;
-        private object[] _currentRow;
+        private T _current;
+        private readonly Queue<T> _queue;
 
-        public ProjectionGridData(IList<object> records, IList<Accessor> accessors)
+        public EntityGridData(IEnumerable<T> entities)
         {
-            _records = new Queue<object>(records);
-            _accessors = accessors;
+            _queue = new Queue<T>(entities);
         }
 
         public Func<object> GetterFor(Accessor accessor)
         {
-            var index = _accessors.IndexOf(accessor);
-            return () => _currentRow[index];
+            return () => accessor.GetValue(_current);
         }
 
         public bool MoveNext()
         {
-            if (_records.Any())
+            if (_queue.Any())
             {
-                _currentRow = (object[])_records.Dequeue();
+                _current = _queue.Dequeue();
                 return true;
             }
 
@@ -73,7 +66,7 @@ namespace FubuFastPack.JqGrid
 
         public object CurrentRowType()
         {
-            return _currentRow.Last(); 
+            return _current.GetTrueType();
         }
     }
 }

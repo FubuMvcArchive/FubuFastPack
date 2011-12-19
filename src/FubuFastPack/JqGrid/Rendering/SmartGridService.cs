@@ -5,7 +5,6 @@ using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;
 using Microsoft.Practices.ServiceLocation;
 using System.Linq;
-using FubuFastPack.JqGrid;
 
 namespace FubuFastPack.JqGrid
 {
@@ -17,14 +16,6 @@ namespace FubuFastPack.JqGrid
         public string HeaderText { get; set; }
         public string ContainerId { get; set; }
         public string LabelId { get; set; }
-    }
-
-
-    public class GridCounts
-    {
-        public string HeaderText { get; set; }
-        public int Count { get; set; }
-        public string Url { get; set; }
     }
 
     public class NamedGridRequest
@@ -79,21 +70,22 @@ namespace FubuFastPack.JqGrid
             return getCounts<TInput>(harness, args);
         }
 
-        private GridCounts getCounts<TInput>(ISmartGridHarness harness, object[] args) where TInput : NamedGridRequest, new()
-        {
-            harness.RegisterArguments(args);
-
-            return new GridCounts(){
-                Count = harness.Count(),
-                Url = _urls.UrlFor(new TInput(){GridName = harness.GridType.NameForGrid()}) + harness.GetQuerystring(),
-                HeaderText = harness.HeaderText()
-            };
-        }
-
         public GridCounts GetCounts<TInput>(string gridName, params object[] args) where TInput : NamedGridRequest, new()
         {
             var harness = _locator.GetInstance<ISmartGridHarness>(gridName);
             return getCounts<TInput>(harness, args);
+        }
+
+        private GridCounts getCounts<TInput>(ISmartGridHarness harness, object[] args) where TInput : NamedGridRequest, new()
+        {
+            harness.RegisterArguments(args);
+
+            return new GridCounts
+                       {
+                            Count = harness.Count(),
+                            Url = _urls.UrlFor(new TInput { GridName = harness.GridType.NameForGrid() }) + harness.GetQuerystring(),
+                            HeaderText = harness.HeaderText()
+                        };
         }
 
         public GridViewModel GetModel(NamedGridRequest request)
@@ -104,7 +96,7 @@ namespace FubuFastPack.JqGrid
                 harness.RegisterArguments(request.Arguments.ToArray());
             }
             
-            return harness.BuildGridModel(request.Policies ?? new IGridPolicy[0]);
+            return harness.BuildGridModel(request.Policies);
         }
 
         public string QuerystringFor(string gridName, params object[] args)
@@ -125,7 +117,7 @@ namespace FubuFastPack.JqGrid
             var gridType = typeof(TGrid);
             var harness = getHarness<TGrid>(args);
             
-            return new GridState(){
+            return new GridState {
                 ContainerId = gridType.NameForGrid() + "-container",
                 GridId = gridType.ContainerNameForGrid(),
                 Count = harness.Count(),

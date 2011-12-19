@@ -22,12 +22,9 @@ namespace FubuFastPack.JqGrid
             = new List<Action<IDictionary<string, object>>>();
 
 
-        protected Action<IDictionary<string, object>> modifyColumnModel
+        protected void addModifyColumnModel(Action<IDictionary<string, object>> v)
         {
-            set
-            {
-                _colModelModifications.Add(value);
-            }
+            _colModelModifications.Add(v);
         }
 
         protected StringToken Header { get; set; }
@@ -106,6 +103,8 @@ namespace FubuFastPack.JqGrid
             return columns;
         }
 
+        //i really want this to be a method
+        //I don't want to have to tell the grid to apply security - it just should
         public IGridDefinition Definition
         {
             get { return _definition; }
@@ -159,7 +158,7 @@ namespace FubuFastPack.JqGrid
 
         public void DoNotAllowUserSorting()
         {
-            modifyColumnModel = dict =>
+            addModifyColumnModel(dict =>
             {
                 if (dict.ContainsKey("sortable"))
                 {
@@ -169,7 +168,7 @@ namespace FubuFastPack.JqGrid
                 {
                     dict.Add("sortable", false);
                 }
-            };
+            });
         }
 
         public void AllowCreateNew()
@@ -191,6 +190,7 @@ namespace FubuFastPack.JqGrid
         {
             policies.Each(p =>
             {
+                //why are these two different things
                 p.AlterGrid(this);
                 p.AlterDefinition(_definition);
             });

@@ -14,7 +14,10 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {
-    // TODO -- only build the grid once
+    /// <summary>
+    /// A service to build a grid.
+    /// </summary>
+    /// <typeparam name="TGrid"></typeparam>
     public class SmartGridHarness<TGrid> : ISmartGridHarness where TGrid : ISmartGrid
     {
         private readonly Cache<string, object> _args = new Cache<string, object>();
@@ -49,8 +52,9 @@ namespace FubuFastPack.JqGrid
             var args = buildArgs();
 
             var grid = (TGrid) Activator.CreateInstance(typeof (TGrid), args);
-            grid.ApplyPolicies(_globalPolicies);
 
+            grid.ApplyPolicies(_globalPolicies);
+            
             return grid;
         }
 
@@ -63,7 +67,7 @@ namespace FubuFastPack.JqGrid
             if (parameter == null)
             {
                 var argList = ctor.GetParameters().Select(x => x.Name).Join(", ");
-                var message = "Argument {0} is invalid.  The possible arguments are {1}"
+                var message = "Argument '{0}' is invalid.  The possible arguments are '{1}'"
                     .ToFormat(name, argList);
 
                 throw new SmartGridException(message);
@@ -73,7 +77,7 @@ namespace FubuFastPack.JqGrid
             {
                 if (value != null && !(value is DomainEntity))
                 {
-                    var message = "Type {0} received for parameter {1}, but expected {2}"
+                    var message = "Type '{0}' received for parameter '{1}', but expected '{2}'"
                         .ToFormat(value.GetType().FullName, name, parameter.ParameterType.FullName);
                     throw new SmartGridException(message);
                 }
@@ -82,12 +86,12 @@ namespace FubuFastPack.JqGrid
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException("value", "Cannot register a null value for argument'{0}'".ToFormat(name));
                 }
 
                 if (!value.GetType().CanBeCastTo(parameter.ParameterType))
                 {
-                    var message = "Type {0} received for parameter {1}, but expected {2}"
+                    var message = "Type '{0}' received for parameter '{1}', but expected '{2}'"
                         .ToFormat(value.GetType().FullName, name, parameter.ParameterType.FullName);
                     throw new SmartGridException(message);
                 }
@@ -112,7 +116,7 @@ namespace FubuFastPack.JqGrid
                 var arg = _request.Value(p.ParameterType, p.Name);
                 if (arg == null && !p.ParameterType.CanBeCastTo<DomainEntity>())
                 {
-                    throw new SmartGridException("Querystring argument {0} cannot be found".ToFormat(p.Name));
+                    throw new SmartGridException("Querystring argument '{0}' cannot be found".ToFormat(p.Name));
                 }
 
                 return arg;
@@ -121,7 +125,14 @@ namespace FubuFastPack.JqGrid
 
         private ConstructorInfo getConstructor()
         {
-            return typeof (TGrid).GetConstructors().Single();
+            try
+            {
+                return typeof(TGrid).GetConstructors().Single();
+            }
+            catch (Exception ex)
+            {
+                throw new SmartGridException("Grids can only have one constructor!", ex);
+            }
         }
 
         public string GetUrl()
@@ -202,10 +213,11 @@ namespace FubuFastPack.JqGrid
                 dict.Keys.Each(k => dataFields.Fill(k));
             });
 
-            var columnNames =
-                grid.Definition.Columns.Skip(1).SelectMany(x => x.ToDictionary()).Select(x => (string) x["name"]).ToList();
-
-
+            var columnNames = grid.Definition.Columns
+                .Skip(1) //skip the data column
+                .SelectMany(x => x.ToDictionary())
+                .Select(x => (string) x["name"])
+                .ToList();
 
             var table = new DataTable();
             dataFields.Each(x => table.Columns.Add(x, typeof (string)));

@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace FubuFastPack.JqGrid
 {
+    /// <summary>
+    /// The output model for rendering the actual grid?
+    /// </summary>
     public class GridViewModel
     {
         private readonly IList<Criteria> _criterion = new List<Criteria>();

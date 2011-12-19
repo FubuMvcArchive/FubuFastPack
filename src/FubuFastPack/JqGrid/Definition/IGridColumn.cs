@@ -4,6 +4,7 @@ using FubuCore;
 using FubuCore.Reflection;
 using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {
@@ -11,12 +12,6 @@ namespace FubuFastPack.JqGrid
     {
         IEnumerable<IDictionary<string, object>> ToDictionary();
         Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls);
-
-        /// <summary>
-        /// The primary accessor used by this column. Exposed to allow security checks.
-        /// </summary>
-        Accessor Accessor { get; }
-
         
         IEnumerable<Accessor> SelectAccessors();
         IEnumerable<Accessor> AllAccessors();
@@ -27,5 +22,7 @@ namespace FubuFastPack.JqGrid
         string GetHeader();
 
         bool IsOuterJoin { get; set; }
+
+        ColumnAuthorizationAction ApplyAuthorization(IServiceLocator services);
     }
 }

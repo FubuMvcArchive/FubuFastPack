@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using FubuMVC.Core;
 
 namespace FubuFastPack.JqGrid
 {
+    /// <summary>
+    /// This in the output model for a grid request
+    /// </summary>
+    [DebuggerDisplay("{ToString()}")]
     public class GridResults : JsonMessage
     {
         private static readonly GridResults _empty = new GridResults

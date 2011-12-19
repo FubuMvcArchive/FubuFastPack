@@ -7,34 +7,34 @@ using FubuMVC.Core.Urls;
 
 namespace FubuFastPack.JqGrid
 {
-    public class FilterColumn<T> : GridColumnBase<T, FilterColumn<T>>, IGridColumn
+    public class FilterColumn<T> : GridColumnBase<T, FilterColumn<T>>
     {
         public FilterColumn(Expression<Func<T, object>> expression) : base(expression)
         {
             IsFilterable = true;
         }
 
-        public IEnumerable<IDictionary<string, object>> ToDictionary()
+        public override IEnumerable<IDictionary<string, object>> ToDictionary()
         {
             yield break;
         }
 
-        public Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls)
+        public override Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls)
         {
             return dto => { };
         }
 
-        public IEnumerable<Accessor> SelectAccessors()
+        public override IEnumerable<Accessor> SelectAccessors()
         {
             yield break;
         }
 
-        public IEnumerable<Accessor> AllAccessors()
+        public override IEnumerable<Accessor> AllAccessors()
         {
             yield return Accessor;
         }
 
-        public IEnumerable<string> Headers()
+        public override IEnumerable<string> Headers()
         {
             yield break;
         }

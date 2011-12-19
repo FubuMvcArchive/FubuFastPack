@@ -22,15 +22,7 @@ namespace FubuFastPack.JqGrid
      * 
      */
 
-    // TODO -- need to add other accessors for getting the Url?
-    // TODO -- way to override the link name?
-    // TODO -- move the ctor's to static factory methods
-    public interface IGridLinkColumn : IGridColumn
-    {
-        void DisableLink();
-    }
-
-    public class LinkColumn<T> : GridColumnBase<T, LinkColumn<T>>, IGridLinkColumn where T : DomainEntity
+    public class LinkColumn<T> : GridColumnBase<T, LinkColumn<T>> where T : DomainEntity
     {
         private readonly Accessor _idAccessor;
         private string _linkName;
@@ -90,7 +82,7 @@ namespace FubuFastPack.JqGrid
         }
 
         // TODO -- UT this little monster
-        public IEnumerable<IDictionary<string, object>> ToDictionary()
+        public override IEnumerable<IDictionary<string, object>> ToDictionary()
         {
             var dictionary = new Dictionary<string, object>{
                 {"name", Accessor.Name},
@@ -121,7 +113,7 @@ namespace FubuFastPack.JqGrid
             return this;
         }
 
-        public virtual Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls)
+        public override Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls)
         {
             var displaySource = data.GetterFor(Accessor);
             var idSource = data.GetterFor(IdAccessor);
@@ -157,18 +149,18 @@ namespace FubuFastPack.JqGrid
             };
         }
 
-        public IEnumerable<Accessor> SelectAccessors()
+        public override IEnumerable<Accessor> SelectAccessors()
         {
             yield return Accessor;
             yield return _idAccessor;
         }
 
-        public IEnumerable<Accessor> AllAccessors()
+        public override IEnumerable<Accessor> AllAccessors()
         {
             return SelectAccessors();
         }
 
-        public IEnumerable<string> Headers()
+        public override IEnumerable<string> Headers()
         {
             yield return GetHeader();
         }

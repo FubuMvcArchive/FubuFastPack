@@ -13,7 +13,7 @@ namespace FubuFastPack.JqGrid
         Func<object, string> ToFormatter(IDisplayFormatter formatter);
     }
 
-    public class GridColumn<T> : GridColumnBase<T, GridColumn<T>>, IGridColumn, IColumnFormatterStrategy
+    public class GridColumn<T> : GridColumnBase<T, GridColumn<T>>, IColumnFormatterStrategy
     {
         private readonly IList<Action<IDictionary<string, object>>> _modifications = new List<Action<IDictionary<string, object>>>();
         private IColumnFormatterStrategy _formatterStrategy;
@@ -39,22 +39,22 @@ namespace FubuFastPack.JqGrid
             }
         }
 
-        public IEnumerable<Accessor> SelectAccessors()
+        public override IEnumerable<Accessor> SelectAccessors()
         {
             yield return Accessor;
         }
 
-        public IEnumerable<Accessor> AllAccessors()
+        public override IEnumerable<Accessor> AllAccessors()
         {
             yield return Accessor;
         }
 
-        public IEnumerable<string> Headers()
+        public override IEnumerable<string> Headers()
         {
             yield return GetHeader();
         }
 
-        public IEnumerable<IDictionary<string, object>> ToDictionary()
+        public override IEnumerable<IDictionary<string, object>> ToDictionary()
         {
             var dictionary = new Dictionary<string, object>{
                 {"name", Accessor.Name},
@@ -67,7 +67,7 @@ namespace FubuFastPack.JqGrid
             yield return dictionary;
         }
 
-        public virtual Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls)
+        public override Action<EntityDTO> CreateDtoFiller(IGridData data, IDisplayFormatter formatter, IUrlRegistry urls)
         {
             var source = data.GetterFor(Accessor);
             var toString = _formatterStrategy.ToFormatter(formatter);

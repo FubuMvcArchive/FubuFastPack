@@ -5,6 +5,10 @@ using FubuCore;
 
 namespace FubuFastPack.JqGrid
 {
+    /// <summary>
+    /// This is the model entities are converted to for sending down
+    /// to the grid
+    /// </summary>
     public class EntityDTO
     {
         private readonly List<object> _cells = new List<object>();

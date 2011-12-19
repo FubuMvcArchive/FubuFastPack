@@ -5,6 +5,7 @@ using FubuCore.Reflection;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {
@@ -67,6 +68,11 @@ namespace FubuFastPack.JqGrid
         public bool IsOuterJoin
         {
             get; set;
+        }
+
+        public virtual ColumnAuthorizationAction ApplyAuthorization(IServiceLocator services)
+        {
+            return ColumnAuthorizationAction.KeepColumn;
         }
     }
 }
