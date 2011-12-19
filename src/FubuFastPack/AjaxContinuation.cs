@@ -6,6 +6,7 @@ using FubuValidation;
 
 namespace FubuFastPack
 {
+    [Obsolete("Use the new AjaxContinuation in FubuMVC.Core.Ajax")]
     public class AjaxContinuation : JsonMessage
     {
         public ValidationError[] errors;
