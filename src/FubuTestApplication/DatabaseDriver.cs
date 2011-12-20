@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using FubuCore.Conversion;
 using FubuFastPack.JqGrid;
 using FubuFastPack.NHibernate;
 using FubuMVC.Core;

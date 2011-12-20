@@ -1,4 +1,5 @@
 using FubuCore;
+using FubuCore.Conversion;
 using FubuFastPack.Persistence;
 using FubuFastPack.StructureMap;
 using FubuTestApplication;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FubuCore;
+using FubuCore.Conversion;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;

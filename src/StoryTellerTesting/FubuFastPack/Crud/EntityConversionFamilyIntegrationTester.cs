@@ -43,7 +43,7 @@ namespace IntegrationTesting.FubuFastPack.Crud
                     .Site.ShouldBeNull();
             }
         }
-
+        
         [Test]
         public void bind_model_should_return_the_correct_entity_if_the_Id_is_a_guid()
         {

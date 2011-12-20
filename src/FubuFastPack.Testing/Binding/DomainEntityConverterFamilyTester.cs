@@ -1,4 +1,5 @@
 using System;
+using FubuCore.Conversion;
 using FubuFastPack.Binding;
 using FubuFastPack.Persistence;
 using FubuFastPack.Testing.Security;
@@ -31,14 +32,22 @@ namespace FubuFastPack.Testing.Binding
         [Test]
         public void can_return_a_finder_for_an_entity()
         {
+            // Mock out a new case
             var id = Guid.NewGuid();
-
-            var func = ClassUnderTest.CreateConverter(typeof (Case), null);
-
             var @case = new Case{Id = id};
-            MockFor<IRepository>().Stub(x => x.Find<Case>(id)).Return(@case);
 
-            func(id.ToString()).ShouldBeTheSameAs(@case);
+            var repository = MockFor<IRepository>();
+            repository.Stub(x => x.Find<Case>(id)).Return(@case);
+
+            // Mock out the Conversion Request
+            var request = MockFor<IConversionRequest>();
+            request.Expect(x => x.Get<IRepository>()).Return(repository);
+            request.Stub(x => x.Text).Return(id.ToString());
+
+            // Assert the converter works
+            var converter = ClassUnderTest.CreateConverter(typeof (Case), null);
+            converter.Convert(request).ShouldBeOfType<Case>();
+
         }
     }
 }

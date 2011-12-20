@@ -137,7 +137,7 @@ namespace FubuFastPack.JqGrid
 
         public string GetUrl()
         {
-            var url = _endpointService.EndpointFor(new GridRequest<TGrid>()).Url;
+            var url = _endpointService.EndpointFor(new GridRequest<TGrid>(),"").Url;
 
             url += GetQuerystring();
 

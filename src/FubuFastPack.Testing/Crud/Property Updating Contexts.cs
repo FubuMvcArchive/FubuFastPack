@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using FubuCore.Conversion;
 using FubuFastPack.Crud.Properties;
 using FubuFastPack.Persistence;
 using FubuCore;

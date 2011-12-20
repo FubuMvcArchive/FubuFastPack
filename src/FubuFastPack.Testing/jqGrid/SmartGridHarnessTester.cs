@@ -388,7 +388,7 @@ namespace FubuFastPack.Testing.jqGrid
             var endpoint = new Endpoint {Url = url};
             
             MockFor<IEndpointService>()
-                .Stub(x => x.EndpointFor(Arg<GridRequest<MultiArgGrid>>.Is.Anything))
+                .Stub(x => x.EndpointFor(Arg<GridRequest<MultiArgGrid>>.Is.Anything, Arg.Is("")))
                 .Return(endpoint);
             
             url += "?person=" + person.Id;

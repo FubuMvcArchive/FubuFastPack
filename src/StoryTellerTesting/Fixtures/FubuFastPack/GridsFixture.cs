@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using FubuCore;
+using FubuCore.Conversion;
 using FubuFastPack.JqGrid;
 using FubuFastPack.NHibernate;
 using FubuFastPack.Persistence;

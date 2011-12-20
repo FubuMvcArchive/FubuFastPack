@@ -1,5 +1,6 @@
 using Bottles;
 using FubuCore;
+using FubuCore.Conversion;
 using FubuFastPack.Binding;
 using FubuFastPack.JqGrid;
 using FubuFastPack.Persistence;
@@ -7,6 +8,7 @@ using FubuFastPack.Querying;
 using FubuFastPack.StructureMap;
 using FubuFastPack.Testing.jqGrid;
 using FubuMVC.Core;
+using FubuMVC.Core.Assets;
 using FubuMVC.Core.Http;
 using FubuMVC.StructureMap;
 using FubuTestingSupport;
@@ -33,6 +35,8 @@ namespace FubuFastPack.Testing
             });
             new FubuFastPackRegistryExtension().Configure(registry);
 
+            AssetDeclarationVerificationActivator.Latched = true;
+
             FubuApplication.For(() => registry).StructureMap(() => container).Bootstrap();
             PackageRegistry.AssertNoFailures();
         }
@@ -40,7 +44,7 @@ namespace FubuFastPack.Testing
         [Test]
         public void object_converter_is_registered()
         {
-            container.GetInstance<IObjectConverter>().ShouldBeOfType<FastPackObjectConverter>();
+            container.GetAllInstances<IObjectConverterFamily>().ShouldContain(x => x.GetType().CanBeCastTo<DomainEntityConverterFamily>());
         }
 
         [Test]

@@ -1,4 +1,5 @@
 using FubuCore;
+using FubuCore.Conversion;
 using FubuFastPack.Binding;
 using FubuFastPack.Persistence;
 using FubuFastPack.StructureMap;
@@ -27,10 +28,10 @@ namespace FubuFastPack.Testing
             FubuApplication
                 .For<FubuRegistry>()
                 .StructureMap(() => container)
-                .Packages(x => x.Assembly(typeof(FastPackObjectConverter).Assembly))
+                .Packages(x => x.Assembly(typeof(DomainEntityConverterFamily).Assembly))
                 .Bootstrap();
 
-            container.GetInstance<IObjectConverter>().ShouldBeOfType<FastPackObjectConverter>();
+            container.GetAllInstances<IObjectConverterFamily>().ShouldContain(x => x.GetType().CanBeCastTo<DomainEntityConverterFamily>());
         }
     }
 }

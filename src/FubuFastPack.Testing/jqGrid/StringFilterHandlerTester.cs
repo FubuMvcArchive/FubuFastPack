@@ -1,4 +1,5 @@
 using FubuCore;
+using FubuCore.Conversion;
 using FubuFastPack.Querying;
 using FubuFastPack.Testing.Security;
 using FubuTestingSupport;
