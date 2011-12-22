@@ -10,8 +10,7 @@ namespace FubuFastPack.Querying
         private readonly T _domainEntity;
 
         public SingleEntityFilter(T domainEntity)
-        {
-            CanView = true;
+        {            
             _domainEntity = domainEntity;
             DenyingRestriction = null;
         }
@@ -23,11 +22,11 @@ namespace FubuFastPack.Querying
 
             if (ReferenceEquals(entityValue, null))
             {
-                if (!ReferenceEquals(value, null)) CanView = false;
+                if (!ReferenceEquals(value, null)) setCanView(false);
             }
             else
             {
-                if (!entityValue.Equals(value)) CanView = false;
+                if (!entityValue.Equals(value)) setCanView(false);
             }
         }
 
@@ -37,11 +36,11 @@ namespace FubuFastPack.Querying
             var entityValue = ReflectionHelper.GetAccessor(property).GetValue(_domainEntity);
             if (ReferenceEquals(entityValue, null))
             {
-                if (ReferenceEquals(value, null)) CanView = false;
+                if (ReferenceEquals(value, null)) setCanView(false);
             }
             else
             {
-                if (entityValue.Equals(value)) CanView = false;
+                if (entityValue.Equals(value)) setCanView(false);
             }
         }
 
@@ -59,8 +58,7 @@ namespace FubuFastPack.Querying
                 orOperation(orOptions);
             }
             var compile = orOptions.BuildOut().Compile();
-            CanView = compile.Invoke(_domainEntity);
-            
+            setCanView(compile.Invoke(_domainEntity));            
         }
 
         public void ApplyRestriction(IDataRestriction<T> restriction)
@@ -72,6 +70,18 @@ namespace FubuFastPack.Querying
         // could be useful for diagnostics
         public IDataRestriction<T> DenyingRestriction { get; set; }
 
-        public bool CanView { get; private set; }
+        private bool _canView = true;
+
+        private void setCanView(bool canView)
+        {
+            if(!canView)
+            {
+                _canView = false;
+            }
+        }
+        public bool CanView
+        {
+            get { return _canView; }            
+        }
     }
 }
