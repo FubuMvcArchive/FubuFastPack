@@ -74,13 +74,7 @@ namespace FubuFastPack.Testing.jqGrid
         [Test]
         public void each_smart_grid_harness_is_registered_by_name_in_the_container()
         {
-            var container = new Container(x =>
-            {
-                x.For<IRepository>().Use<InMemoryRepository>();
-                x.For<IEntityFinder>().Use<EntityFinder>();
-                x.For<IEntityFinderCache>().Use<StructureMapEntityFinderCache>();
-                x.For<ICurrentHttpRequest>().Use<FakeCurrentHttpRequest>();
-            });
+            var container = FubuFastPackRegistryExtensionTester.SetupContainerForFastPack();
 
             FubuApplication.For(() => theRegistry)
                 .StructureMap(() => container)

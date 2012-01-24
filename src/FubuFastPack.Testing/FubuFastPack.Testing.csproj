@@ -130,7 +130,6 @@
     <Compile Include="Querying\QueryableDataSourceFilterTester.cs" />
     <Compile Include="Querying\SingleEntityFilterTester.cs" />
     <Compile Include="Querying\SortRuleTester.cs" />
-    <Compile Include="RegistrationTester.cs" />
     <Compile Include="Security\RestrictedDataAuthorizationPolicyTester.cs" />
     <Compile Include="Validation\UniqueValidationSourceTester.cs" />
     <Compile Include="Validation\ValidationScanningTester.cs" />

@@ -1,7 +1,9 @@
 using Bottles;
 using FubuCore;
+using FubuCore.Binding;
 using FubuCore.Conversion;
 using FubuFastPack.Binding;
+using FubuFastPack.Crud;
 using FubuFastPack.JqGrid;
 using FubuFastPack.Persistence;
 using FubuFastPack.Querying;
@@ -26,13 +28,7 @@ namespace FubuFastPack.Testing
         public void SetUp()
         {
             var registry = new FubuRegistry();
-            container = new Container(x =>
-            {
-                x.For<IRepository>().Use<InMemoryRepository>();
-                x.For<IEntityFinder>().Use<EntityFinder>();
-                x.For<IEntityFinderCache>().Use<StructureMapEntityFinderCache>();
-                x.For<ICurrentHttpRequest>().Use<FakeCurrentHttpRequest>();
-            });
+            container = SetupContainerForFastPack();
             new FubuFastPackRegistryExtension().Configure(registry);
 
             AssetDeclarationVerificationActivator.Latched = true;
@@ -41,10 +37,30 @@ namespace FubuFastPack.Testing
             PackageRegistry.AssertNoFailures();
         }
 
-        [Test]
-        public void object_converter_is_registered()
+        public static Container SetupContainerForFastPack()
         {
-            container.GetAllInstances<IObjectConverterFamily>().ShouldContain(x => x.GetType().CanBeCastTo<DomainEntityConverterFamily>());
+            return new Container(x =>
+                                          {
+                                              x.For<IRepository>().Use<InMemoryRepository>();
+                                              x.For<IEntityFinder>().Use<EntityFinder>();
+                                              x.For<IEntityFinderCache>().Use<StructureMapEntityFinderCache>();
+                                              x.For<ICurrentHttpRequest>().Use<FakeCurrentHttpRequest>();
+                                              x.For<IModelBinder>().Use(StandardModelBinder.Basic());
+                                              x.For<IObjectResolver>().Use(ObjectResolver.Basic());
+                                              x.For<IEntityDefaults>().Use<NulloEntityDefaults>();
+                                          });
+        }
+
+        [Test]
+        public void no_object_converter_families_registered()
+        {
+            container.GetAllInstances<IObjectConverterFamily>().ShouldHaveCount(0);
+        }
+
+        [Test]
+        public void converter_family_is_registered()
+        {
+            container.GetAllInstances<IConverterFamily>().ShouldContain(x => x.GetType().CanBeCastTo<EntityConversionFamily>());
         }
 
         [Test]
