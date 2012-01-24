@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FubuCore.Util;
 using FubuCore;
+using FubuCore.Util;
 
 namespace FubuFastPack.JqGrid
 {

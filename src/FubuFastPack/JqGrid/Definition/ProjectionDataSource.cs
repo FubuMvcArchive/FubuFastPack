@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
+using FubuCore;
 using FubuCore.Util;
 using FubuFastPack.Domain;
 using FubuFastPack.NHibernate;
 using FubuFastPack.Querying;
 using FubuLocalization;
 using NHibernate.Criterion;
-using FubuCore;
 
 namespace FubuFastPack.JqGrid
 {

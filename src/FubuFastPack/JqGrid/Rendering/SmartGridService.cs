@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;
 using Microsoft.Practices.ServiceLocation;
-using System.Linq;
 
 namespace FubuFastPack.JqGrid
 {

@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FubuCore;
 using FubuFastPack.Domain;
 using FubuMVC.Core.Registration;
-using System.Collections.Generic;
 
 namespace FubuFastPack.Crud
 {

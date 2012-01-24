@@ -8,8 +8,8 @@ using FluentNHibernate.Conventions;
 using FubuCore;
 using FubuCore.Util;
 using NHibernate.Cfg;
-using NHibernate.Event;
 using NHibernate.Cfg.Loquacious;
+using NHibernate.Event;
 using NHibernate.Linq.Functions;
 
 namespace FubuFastPack.NHibernate

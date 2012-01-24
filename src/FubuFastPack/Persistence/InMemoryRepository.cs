@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using FubuCore;
 using FubuCore.Reflection;
 using FubuFastPack.Domain;
-using FubuCore;
 
 namespace FubuFastPack.Persistence
 {

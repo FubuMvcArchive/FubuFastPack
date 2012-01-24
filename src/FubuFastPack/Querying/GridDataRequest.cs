@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using FubuCore;
+﻿using System.Collections.Generic;
 using System.Linq;
+using FubuCore;
 
 namespace FubuFastPack.Querying
 {

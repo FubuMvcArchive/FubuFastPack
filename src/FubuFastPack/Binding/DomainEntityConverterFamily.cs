@@ -1,11 +1,10 @@
 using System;
 using FubuCore;
 using FubuCore.Conversion;
-using FubuCore.Util;
+using FubuCore.Reflection;
 using FubuFastPack.Crud;
 using FubuFastPack.Domain;
 using FubuFastPack.Persistence;
-using FubuCore.Reflection;
 
 namespace FubuFastPack.Binding
 {

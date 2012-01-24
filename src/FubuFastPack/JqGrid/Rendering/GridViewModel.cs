@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using FubuFastPack.Querying;
 using FubuLocalization;
-using System.Linq;
 
 namespace FubuFastPack.JqGrid
 {

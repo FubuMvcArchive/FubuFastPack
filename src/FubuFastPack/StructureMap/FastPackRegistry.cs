@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Bottles;
+using FubuCore;
 using FubuCore.Reflection;
 using FubuFastPack.JqGrid;
 using FubuFastPack.NHibernate;
@@ -12,7 +13,6 @@ using FubuValidation.Fields;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
-using FubuCore;
 
 namespace FubuFastPack.StructureMap
 {
