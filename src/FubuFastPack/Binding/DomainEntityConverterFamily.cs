@@ -2,8 +2,10 @@ using System;
 using FubuCore;
 using FubuCore.Conversion;
 using FubuCore.Util;
+using FubuFastPack.Crud;
 using FubuFastPack.Domain;
 using FubuFastPack.Persistence;
+using FubuCore.Reflection;
 
 namespace FubuFastPack.Binding
 {
@@ -13,7 +15,7 @@ namespace FubuFastPack.Binding
         // CanBeCastTo<> is an extension method in FubuCore as well
         public bool Matches(Type type, ConverterLibrary converter)
         {
-            return type.CanBeCastTo<DomainEntity>();
+            return type.CanBeCastTo<DomainEntity>() && !type.HasAttribute<IgnoreEntityInBindingAttribute>();
         }
 
         // In this case we find the correct object by looking it up by Id
