@@ -1,4 +1,5 @@
-﻿using FubuValidation;
+﻿using FubuMVC.Core.Ajax;
+using FubuValidation;
 
 namespace FubuFastPack.Crud.Properties
 {
@@ -10,7 +11,7 @@ namespace FubuFastPack.Crud.Properties
 
         public UpdatePropertyResultViewModel(Notification notification, object target, string valueToDisplay)
         {
-            WithSubmission(notification, target);
+            this.WithSubmission(notification, target);
             NewValueToDisplay = valueToDisplay;
         }
 

@@ -56,19 +56,19 @@ namespace FubuFastPack.Testing.Crud
         [Test]
         public void should_return_success_false()
         {
-            result.success.ShouldBeFalse();
+            result.Success.ShouldBeFalse();
         }
 
         [Test]
         public void should_show_not_authorized_as_the_message()
         {
-            result.message.ShouldEqual(FastPackKeys.NOT_AUTHORIZED).ToString();
+            result.Message.ShouldEqual(FastPackKeys.NOT_AUTHORIZED).ToString();
         }
 
         [Test]
         public void should_put_a_single_validation_message_in()
         {
-            result.errors.Single().message.ShouldEqual(FastPackKeys.NOT_AUTHORIZED).ToString();
+            result.Errors.Single().message.ShouldEqual(FastPackKeys.NOT_AUTHORIZED).ToString();
         }
 
     }
@@ -109,13 +109,13 @@ namespace FubuFastPack.Testing.Crud
         [Test]
         public void the_success_should_be_false()
         {
-            theOutput.success.ShouldBeFalse();
+            theOutput.Success.ShouldBeFalse();
         }
 
         [Test]
         public void should_be_an_error()
         {
-            theOutput.errors.Length.ShouldEqual(1);
+            theOutput.Errors.Count.ShouldEqual(1);
         }
     }
 
@@ -165,7 +165,7 @@ namespace FubuFastPack.Testing.Crud
         [Test]
         public void the_success_of_the_return_value_to_the_client_should_be_success_equals_false_so_that_no_refresh_is_triggered()
         {
-            Output.success.ShouldBeFalse();
+            Output.Success.ShouldBeFalse();
         }
     }
 }

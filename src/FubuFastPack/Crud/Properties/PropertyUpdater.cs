@@ -6,6 +6,7 @@ using FubuFastPack.Domain;
 using FubuFastPack.Persistence;
 using FubuFastPack.Validation;
 using FubuLocalization;
+using FubuMVC.Core.Ajax;
 using FubuMVC.Core.UI.Security;
 using FubuValidation;
 
@@ -56,14 +57,14 @@ namespace FubuFastPack.Crud.Properties
                 var rights = _fieldAccess.RightsFor(model, property.Property);
                 if (!rights.Write)
                 {
-                    return new UpdatePropertyResultViewModel
-                           {
-                               errors =
-                                   new[] { new ValidationError(property.Property.Name, FastPackKeys.NOT_AUTHORIZED.ToString()), },
-                               message = FastPackKeys.NOT_AUTHORIZED.ToString(),
-                               refresh = false,
-                               success = false
+                    var updatePropertyViewModel = new UpdatePropertyResultViewModel
+                           {                                                              
+                               Message = FastPackKeys.NOT_AUTHORIZED.ToString(),
+                               ShouldRefresh = false,
+                               Success = false
                            };
+                    updatePropertyViewModel.Errors.Add(new AjaxError() {field = property.Property.Name, message = FastPackKeys.NOT_AUTHORIZED.ToString()});
+                    return updatePropertyViewModel;
                 }
 
 
@@ -80,15 +81,19 @@ namespace FubuFastPack.Crud.Properties
 
             if (editResult.WasNotApplied)
             {
-                return new UpdatePropertyResultViewModel
-                       {
-                           success = false,
-                           errors = editResult.ToValidationErrors()
-                       };
+                var updatePropertyResultViewModel = new UpdatePropertyResultViewModel
+                {
+                    Success = false
+                };
+
+                editResult.ToValidationErrors().Select(
+                    error => new AjaxError {field = error.field, message = error.message}).Each(
+                        updatePropertyResultViewModel.Errors.Add);
+                return updatePropertyResultViewModel;
             }
 
             var returnValue = propertySaveResult(model, editResult);
-            if (returnValue.success)
+            if (returnValue.Success)
             {
                 _logger.Log(model, editResult);
             }
@@ -103,12 +108,13 @@ namespace FubuFastPack.Crud.Properties
             var accessor = PropertyUtility.FindPropertyByName<TEntity>(updatePropertyModel.PropertyName);
             var propertyName = LocalizationManager.GetHeader(accessor.InnerProperty);
 
-            var error = new ValidationError(propertyName, message);
-            return new UpdatePropertyResultViewModel
-                   {
-                       success = false,
-                       errors = new[] { error }
-                   };
+            var error = new AjaxError(){field = propertyName, message = message};
+            var updatePropertyResultViewModel = new UpdatePropertyResultViewModel
+            {
+                Success = false,
+            };
+            updatePropertyResultViewModel.Errors.Add(error);
+            return updatePropertyResultViewModel;
         }
 
         private UpdatePropertyResultViewModel propertySaveResult(TEntity entity, EditPropertyResult valueToDisplay)
@@ -122,8 +128,9 @@ namespace FubuFastPack.Crud.Properties
             }
             else
             {
-                response.errors = notification.ToValidationErrors();
-                response.success = false;
+                var foo  = notification.ToValidationErrors();
+                foo.Each(x=> response.Errors.Add(new AjaxError(){field = x.field, message = x.message}));
+                response.Success = false;
                 _repository.RejectChanges(entity);
             }
 

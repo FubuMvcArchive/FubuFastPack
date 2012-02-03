@@ -27,7 +27,7 @@ namespace FubuFastPack.Testing.Crud
         [Test]
         public void output_should_indicate_success()
         {
-            _output.success.ShouldBeTrue();
+            _output.Success.ShouldBeTrue();
         }
 
 

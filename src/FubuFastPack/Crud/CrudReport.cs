@@ -1,4 +1,6 @@
-﻿using FubuValidation;
+﻿using System;
+using FubuMVC.Core.Ajax;
+using FubuValidation;
 
 namespace FubuFastPack.Crud
 {
@@ -10,11 +12,12 @@ namespace FubuFastPack.Crud
 
         public CrudReport(Notification notification, object target, object theFlattenedValue)
         {
-            WithSubmission(notification, target);
+            this.WithSubmission(notification, target);
             flattenedValue = theFlattenedValue;
         }
 
         public object flattenedValue { get; set; }
         public string editUrl { get; set; }
+        public Guid Id { get; set; }
     }
 }
