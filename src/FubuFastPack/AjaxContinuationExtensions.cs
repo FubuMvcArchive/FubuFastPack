@@ -74,7 +74,7 @@ namespace FubuFastPack
         public static AjaxContinuation AddError(this AjaxContinuation ajaxContinuation, AjaxError ajaxError)
         {
             if (ajaxError == null) return ajaxContinuation;
-            ajaxContinuation.AddError(ajaxError);
+            ajaxContinuation.Errors.Add(ajaxError);
             return ajaxContinuation;
         }
 
