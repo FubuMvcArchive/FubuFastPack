@@ -16,10 +16,7 @@ namespace FubuFastPack
         {
             ajaxContinuation[Target] = target;
             ajaxContinuation.Success = notification.IsValid();
-            foreach (var validationError in notification.ToValidationErrors())
-            {
-                ajaxContinuation.Errors.Add(new AjaxError {field = validationError.field, message = validationError.message});
-            }
+            ajaxContinuation.AddErrors(notification.ToValidationErrors());            
             return ajaxContinuation;
         }
 
@@ -60,14 +57,34 @@ namespace FubuFastPack
             return new AjaxContinuation(){Success = true};
         }
 
+        public static AjaxContinuation AddErrors(this AjaxContinuation ajaxContinuation, ValidationError[] validationErrors)
+        {
+            if (validationErrors == null) return ajaxContinuation;
+            validationErrors.Each(x => ajaxContinuation.AddError(x));
+            return ajaxContinuation;
+        }
+
+        public static AjaxContinuation AddError(this AjaxContinuation ajaxContinuation, ValidationError validationError)
+        {
+            if (validationError == null) return ajaxContinuation;
+            ajaxContinuation.AddError(new AjaxError{field = validationError.field, message = validationError.message});
+            return ajaxContinuation;
+        }
+
+        public static AjaxContinuation AddError(this AjaxContinuation ajaxContinuation, AjaxError ajaxError)
+        {
+            if (ajaxError == null) return ajaxContinuation;
+            ajaxContinuation.AddError(ajaxError);
+            return ajaxContinuation;
+        }
+
         public static AjaxContinuation ForError(Notification notification)
         {
             var ajaxContinuation = new AjaxContinuation
             {
                 Success = notification.IsValid()
             };
-            notification.ToValidationErrors().Each(
-                x => ajaxContinuation.Errors.Add(new AjaxError() {field = x.field, message = x.message}));
+            ajaxContinuation.AddErrors(notification.ToValidationErrors());            
             return ajaxContinuation;
         }
 
