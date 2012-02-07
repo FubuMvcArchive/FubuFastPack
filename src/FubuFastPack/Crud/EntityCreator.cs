@@ -47,7 +47,7 @@ namespace FubuFastPack.Crud
             return new CrudReport(notification, model, flattenedValue)
                    {
                        Success = wasSaved,
-                       editUrl = editUrl
+                       EditUrl = editUrl
                    };
         }
     }
