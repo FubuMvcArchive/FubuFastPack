@@ -10,6 +10,7 @@ namespace FubuFastPack
         public const string ShowPage = "showPage";
         public const string NavigatePage = "navigatePage";
         public const string ShowDialog = "showDialog";
+        public const string NewValueToDisplay = "NewValueToDisplay";
 
         public static AjaxContinuation WithSubmission(this AjaxContinuation ajaxContinuation, Notification notification)
         {

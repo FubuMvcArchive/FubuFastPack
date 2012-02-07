@@ -9,12 +9,10 @@ namespace FubuFastPack.Crud.Properties
         {
         }
 
-        public UpdatePropertyResultViewModel(Notification notification, object target, string valueToDisplay)
+        public UpdatePropertyResultViewModel(Notification notification, string valueToDisplay)
         {
             this.WithSubmission(notification);
-            NewValueToDisplay = valueToDisplay;
-        }
-
-        public string NewValueToDisplay { get; set; }
+            this[AjaxContinuationExtensions.NewValueToDisplay] = valueToDisplay;
+        }        
     }
 }

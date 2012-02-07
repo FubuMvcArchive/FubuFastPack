@@ -117,7 +117,7 @@ namespace FubuFastPack.Crud.Properties
         private UpdatePropertyResultViewModel propertySaveResult(TEntity entity, EditPropertyResult valueToDisplay)
         {
             var notification = _validator.Validate(entity);
-            var response = new UpdatePropertyResultViewModel(notification, entity, valueToDisplay.NewValue);
+            var response = new UpdatePropertyResultViewModel(notification, valueToDisplay.NewValue);
 
             if (notification.IsValid())
             {
