@@ -44,11 +44,11 @@ namespace FubuFastPack.Crud
             }
 
             var flattenedValue = _flattener.Flatten(model);
-            return new CrudReport(notification, model, flattenedValue)
-                   {
-                       Success = wasSaved,
-                       EditUrl = editUrl
-                   };
+            return new CrudReport(notification, flattenedValue)
+            {
+                Success = wasSaved,
+                EditUrl = editUrl
+            };
         }
     }
 }

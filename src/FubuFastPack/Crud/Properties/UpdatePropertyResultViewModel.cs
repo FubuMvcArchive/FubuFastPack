@@ -11,7 +11,7 @@ namespace FubuFastPack.Crud.Properties
 
         public UpdatePropertyResultViewModel(Notification notification, object target, string valueToDisplay)
         {
-            this.WithSubmission(notification, target);
+            this.WithSubmission(notification);
             NewValueToDisplay = valueToDisplay;
         }
 

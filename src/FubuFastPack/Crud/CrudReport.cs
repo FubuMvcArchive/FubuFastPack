@@ -11,9 +11,9 @@ namespace FubuFastPack.Crud
         {
         }
 
-        public CrudReport(Notification notification, object target, object theFlattenedValue)
+        public CrudReport(Notification notification, object theFlattenedValue)
         {
-            this.WithSubmission(notification, target);
+            this.WithSubmission(notification);
             FlattenedValue = theFlattenedValue;
         }
 

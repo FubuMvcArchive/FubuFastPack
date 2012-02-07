@@ -9,52 +9,45 @@ namespace FubuFastPack
     {
         public const string ShowPage = "showPage";
         public const string NavigatePage = "navigatePage";
-        public const string Target = "Target";
         public const string ShowDialog = "showDialog";
 
-        public static AjaxContinuation WithSubmission(this AjaxContinuation ajaxContinuation, Notification notification, object target)
+        public static AjaxContinuation WithSubmission(this AjaxContinuation ajaxContinuation, Notification notification)
         {
-            ajaxContinuation[Target] = target;
             ajaxContinuation.Success = notification.IsValid();
             ajaxContinuation.AddErrors(notification.ToValidationErrors());            
             return ajaxContinuation;
         }
 
-        public static AjaxContinuation ForDialog(string url, object target)
+        public static AjaxContinuation ForDialog(string url)
         {
             var returnValue = new AjaxContinuation();
             returnValue[ShowDialog] = url;
-            returnValue[Target] = target;
             return returnValue;
         }
 
-        public static AjaxContinuation ForMessage(StringToken key, object target)
+        public static AjaxContinuation ForMessage(StringToken key)
         {
             var returnValue = AjaxContinuation.ForMessage(key);
-            returnValue[Target] = target;
             return returnValue;
         }
 
-        public static AjaxContinuation ForPage(string url, object target)
+        public static AjaxContinuation ForPage(string url)
         {
             var returnValue = new AjaxContinuation();
             returnValue[ShowPage] = url;
-            returnValue[Target] = target;
             return returnValue;
         }
 
-        public static AjaxContinuation ForRefresh(object target)
+        public static AjaxContinuation ForRefresh()
         {
-            var returnValue = new AjaxContinuation();
-            returnValue[Target] = target;
-            returnValue.Success = true;
+            var returnValue = ForSuccess();
             returnValue.ShouldRefresh = true;
             return returnValue;
         }
 
         public static AjaxContinuation ForSuccess()
         {
-            return new AjaxContinuation(){Success = true};
+            return new AjaxContinuation {Success = true};
         }
 
         public static AjaxContinuation AddErrors(this AjaxContinuation ajaxContinuation, ValidationError[] validationErrors)
