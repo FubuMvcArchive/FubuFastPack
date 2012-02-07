@@ -119,7 +119,7 @@ namespace FubuFastPack.Crud
 
             var editPropertyUrlPattern = "{0}/editproperty".ToFormat(entityType.Name).ToLower();
             graph.AddActionFor(editPropertyUrlPattern, typeof(IPropertyUpdater<>), entityType)
-                .UrlCategory.Category = Categories.PROPERTY_EDIT;
+                .UrlCategory.Category = FastPackUrlCategories.PROPERTY_EDIT;
 
             var propertyForwarder = typeof(PropertyUpdaterForwarder<>).CloseAndBuildAs<IChainForwarder>(entityType);
             graph.AddForwarder(propertyForwarder);
