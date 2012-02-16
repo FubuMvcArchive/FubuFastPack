@@ -50,9 +50,7 @@ namespace FubuFastPack.StructureMap
 
             if(request.Url.StartsWith("/_content"))
             {
-               
-                var behavior = _container.GetInstance<IActionBehavior>(_arguments.ToExplicitArgs(), _behaviorId.ToString());
-                behavior.Invoke();
+               new NestedStructureMapContainerBehavior(_container,_arguments,_behaviorId).Invoke();
                 return;
             }
 
