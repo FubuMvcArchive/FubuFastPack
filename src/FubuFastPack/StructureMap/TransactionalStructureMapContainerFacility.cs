@@ -1,6 +1,8 @@
 using System;
 using FubuCore.Binding;
+using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
+using FubuMVC.Core.Runtime;
 using FubuMVC.StructureMap;
 using StructureMap;
 
@@ -37,6 +39,23 @@ namespace FubuFastPack.StructureMap
 
         public void Invoke()
         {
+            _container.Configure(cfg =>
+            {
+                _arguments.EachService((type, value) =>
+                {
+                    cfg.For(type).Use(value);
+                });
+            });
+            var request = _container.GetInstance<IFubuRequest>().Get<CurrentRequest>();
+
+            if(request.Url.StartsWith("/_content"))
+            {
+               
+                var behavior = _container.GetInstance<IActionBehavior>(_arguments.ToExplicitArgs(), _behaviorId.ToString());
+                behavior.Invoke();
+                return;
+            }
+
             _container.ExecuteInTransaction<IContainer>(invokeRequestedBehavior);
         }
 

@@ -1,7 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using FubuCore.Binding;
 using FubuCore.Conversion;
+using FubuFastPack.Crud;
 using FubuFastPack.JqGrid;
 using FubuFastPack.NHibernate;
 using FubuMVC.Core;
@@ -82,6 +84,8 @@ namespace FubuTestApplication
                 x.For<DatabaseSettings>().Use(_settings);
                 x.BootstrapNHibernate<FakeDomainNHIbernateRegistry>(ConfigurationBehavior.AlwaysUseNewConfiguration);
                 x.UseExplicitNHibernateTransactionBoundary();
+                x.For<IModelBinder>().Use<StandardModelBinder>();
+                x.For<IEntityDefaults>().Use<NulloEntityDefaults>();
 
                 x.FubuValidationWith(IncludePackageAssemblies.No);
             });

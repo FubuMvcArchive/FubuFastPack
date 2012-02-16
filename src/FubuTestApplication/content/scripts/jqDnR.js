@@ -8,6 +8,8 @@
  * $Version: 2007.08.19 +r2
  */
 
+
+
 (function($){
 $.fn.jqDrag=function(h){return i(this,h,'d');};
 $.fn.jqResize=function(h,ar){return i(this,h,'r',ar);};
