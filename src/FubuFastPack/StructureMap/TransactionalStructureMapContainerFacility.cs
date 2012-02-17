@@ -39,41 +39,31 @@ namespace FubuFastPack.StructureMap
 
         public void Invoke()
         {
-            _container.Configure(cfg =>
+            using (var nested = _container.GetNestedContainer())
             {
-                _arguments.EachService((type, value) =>
+                nested.Configure(cfg => _arguments.EachService((type, value) => cfg.For(type).Use(value)));
+                
+                var request = nested.GetInstance<IFubuRequest>().Get<CurrentRequest>();
+
+                if (request.Url.StartsWith("/_content"))
                 {
-                    cfg.For(type).Use(value);
-                });
-            });
-            var request = _container.GetInstance<IFubuRequest>().Get<CurrentRequest>();
+                    nested.GetInstance<IActionBehavior>(_arguments.ToExplicitArgs(),_behaviorId.ToString()).Invoke();
+                    return;
+                }
 
-            if(request.Url.StartsWith("/_content"))
-            {
-               new NestedStructureMapContainerBehavior(_container,_arguments,_behaviorId).Invoke();
-                return;
+                nested.ExecuteInTransactionWithoutNestedContainer<IContainer>(invokeRequestedBehavior);
             }
-
-            _container.ExecuteInTransaction<IContainer>(invokeRequestedBehavior);
+          
         }
 
         public void InvokePartial()
         {
-            // Just go straight to the inner behavior here.  Assuming that the transaction & principal
-            // are already set up
-            invokeRequestedBehavior(_container);
+            // this should never be called
+            throw new NotSupportedException();
         }
 
         private void invokeRequestedBehavior(IContainer c)
         {
-            c.Configure(cfg =>
-            {
-                _arguments.EachService((type, value) =>
-                {
-                    cfg.For(type).Use(value);
-                });
-            });
-            
             var behavior = c.GetInstance<IActionBehavior>(_arguments.ToExplicitArgs(), _behaviorId.ToString());
             behavior.Invoke();
         }

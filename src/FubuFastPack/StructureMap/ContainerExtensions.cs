@@ -25,5 +25,9 @@ namespace FubuFastPack.StructureMap
         {
             container.GetInstance<TransactionProcessor>().Execute(action);
         }
+        public static void ExecuteInTransactionWithoutNestedContainer<T>(this IContainer container, Action<T> action)
+        {
+            new NoNestedTransactionProcessor(container).Execute(action);
+        }
     }
 }
