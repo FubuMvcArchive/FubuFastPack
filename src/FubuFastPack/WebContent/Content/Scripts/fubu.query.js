@@ -4,7 +4,7 @@
 
     return this.each(function(i, div) {
         div.tbody = $('tbody', div).get(0);
-        div.grid = $('#' + $(div).metadata().filters.gridId).get(0);
+        div.grid = $('#' + $(div).data(":").filters.gridId).get(0);
 
         var queryRunner = function() {
             var notification = div.validate();
@@ -87,7 +87,7 @@
             }
         };
 
-        var metadata = $(div).metadata();
+        var metadata = $(div).data(":");
         if (metadata.filters.initialCriteria.length > 0) {
             div.loadQuery(metadata.filters.initialCriteria);
         }
@@ -204,7 +204,7 @@ $.fn.asFilterRow = function(templates, options, div) {
         var oper = row.operator();
 
         var template = row.findEditorTemplate('.' + prop + '-' + oper, '.' + oper).appendTo(row.editorCell);
-        var metadata = template.metadata();
+        var metadata = template.data(":");
         var editorName = "textbox";
         if (metadata != null && metadata.formatter != null) {
             editorName = metadata.formatter;

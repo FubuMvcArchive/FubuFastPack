@@ -43,7 +43,7 @@
 
     fubu.SmartGrid = function (div, userOptions) {
         var $div = $(div);
-        var model = $div.metadata();
+        var model = $div.data(":");
         var definition = model.definition;
         div.isGridDisabled = model.disabled == true;
 
