@@ -58,7 +58,17 @@ namespace FubuFastPack.Querying
                 orOperation(orOptions);
             }
             var compile = orOptions.BuildOut().Compile();
-            setCanView(compile.Invoke(_domainEntity));            
+            var canView = false;
+
+            try
+            {
+                canView = compile.Invoke(_domainEntity);
+            }
+            catch (NullReferenceException) { }
+            finally
+            {
+                setCanView(canView);
+            }
         }
 
         public void ApplyRestriction(IDataRestriction<T> restriction)
