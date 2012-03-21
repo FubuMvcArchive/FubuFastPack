@@ -322,9 +322,6 @@
     <Content Include="WebContent\Content\Scripts\jquery.fmatter.js" />
     <Content Include="WebContent\Content\Scripts\jquery.metadata.js" />
     <Content Include="WebContent\Content\styles\ui.jqgrid.css" />
-    <Content Include="WebContent\grid.asset.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup />
 </Project>
