@@ -36,6 +36,11 @@ namespace IntegrationTesting.FubuFastPack.JqGrid
             throw new System.NotImplementedException();
         }
 
+        public string FullUrl()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public string ToFullUrl(string url)
         {
             return url;

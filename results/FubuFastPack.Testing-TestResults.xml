@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="c:\dev\FubuFastPack\src\FubuFastPack.Testing\bin\debug\FubuFastPack.Testing.dll" total="219" errors="0" failures="0" not-run="1" inconclusive="0" ignored="1" skipped="0" invalid="0" date="2012-03-30" time="15:04:21">
+  <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="c:\dev\FubuFastPack" machine-name="DEV-PC" user="dev" user-domain="dev-PC" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="c:\dev\FubuFastPack\src\FubuFastPack.Testing\bin\debug\FubuFastPack.Testing.dll" executed="True" result="Success" success="True" time="4.252" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="FubuFastPack" executed="True" result="Success" success="True" time="4.247" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Testing" executed="True" result="Success" success="True" time="4.247" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Binding" executed="True" result="Success" success="True" time="0.473" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="DomainEntityConverterFamilyTester" executed="True" result="Success" success="True" time="0.472" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Binding.DomainEntityConverterFamilyTester.can_return_a_finder_for_an_entity" executed="True" result="Success" success="True" time="0.454" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Binding.DomainEntityConverterFamilyTester.should_match_an_entity" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+                      <test-case name="FubuFastPack.Testing.Binding.DomainEntityConverterFamilyTester.should_not_match_primitives" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="ContainerActivatorExtensionsTester" executed="True" result="Success" success="True" time="0.090" asserts="0">
+                <results>
+                  <test-case name="FubuFastPack.Testing.ContainerActivatorExtensionsTester.run_activator_from_container" executed="True" result="Success" success="True" time="0.090" asserts="1" />
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Crud" executed="True" result="Success" success="True" time="1.246" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="CrudTypeExtensionsTester" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.CrudTypeExtensionsTester.get_entity_model_type" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Crud.CrudTypeExtensionsTester.get_entity_type" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Crud.CrudTypeExtensionsTester.is_crud_controller_negative" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.CrudTypeExtensionsTester.is_crud_controller_positive" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="EditEntityModelTester" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.EditEntityModelTester.EntityType_is_the_true_type_of_its_target" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EditEntityModelTester.Id_is_the_id_of_its_target" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EditEntityModelTester.TypeName_is_the_true_type_name_of_its_target" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="EditPropertyResultTester" executed="True" result="Success" success="True" time="0.013" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.EditPropertyResultTester.Failure_should_set_failure_message" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EditPropertyResultTester.Failure_should_set_WasNotApplied" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EditPropertyResultTester.IsListAccessor_should_be_true_if_the_accessor_is_a_list_type" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EditPropertyResultTester.ListName_should_be_set_if_the_accessor_is_a_list_type" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="EnsureEntityExistsConventionTester" executed="True" result="Success" success="True" time="0.347" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.EnsureEntityExistsConventionTester.should_not_place_a_wrapper_around_non_entity_endpoints" executed="True" result="Success" success="True" time="0.320" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EnsureEntityExistsConventionTester.should_place_an_EnsureEntityExistsBehavior_in_front_of_entity_endpoints" executed="True" result="Success" success="True" time="0.016" asserts="3" />
+                      <test-case name="FubuFastPack.Testing.Crud.EnsureEntityExistsConventionTester.should_place_an_EnsureEntityExistsBehavior_in_front_of_entity_endpoints_2" executed="True" result="Success" success="True" time="0.008" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="EntityModelBinderTester" executed="True" result="Success" success="True" time="0.128" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.EntityModelBinderTester.should_match_entities" executed="True" result="Success" success="True" time="0.004" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Crud.EntityModelBinderTester.should_not_match_on_address" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EntityModelBinderTester.should_not_match_on_types_that_are_not_entities" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.EntityModelBinderTester.try_to_return_a_new_object_of_that_type_if_it_cannot_be_found_in_the_repository_for_child_object_binding_scenarios" executed="True" result="Success" success="True" time="0.116" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_ensuring_entity_exists_and_it_does" executed="True" result="Success" success="True" time="0.072" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.when_ensuring_entity_exists_and_it_does.should_store_the_entity_in_the_request" executed="True" result="Success" success="True" time="0.069" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_ensuring_entity_exists_and_it_does_not" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.when_ensuring_entity_exists_and_it_does_not.should_throw_exception_indicating_entity_does_not_exist" executed="True" result="Success" success="True" time="0.005" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_handling_a_valid_creation_request" executed="True" result="Success" success="True" time="0.129" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.when_handling_a_valid_creation_request.output_should_indicate_success" executed="True" result="Success" success="True" time="0.127" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_the_entity_is_existing" executed="True" result="Success" success="True" time="0.046" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.when_the_entity_is_existing.the_property_update_url_should_be_applied" executed="True" result="Success" success="True" time="0.044" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_the_entity_is_new" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.when_the_entity_is_new.the_submit_url_should_be_set" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="while_recording_a_property_change_that_does_not_change_the_underlying_value" executed="True" result="Success" success="True" time="0.212" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.while_recording_a_property_change_that_does_not_change_the_underlying_value.do_NOT_create_a_property_log" executed="True" result="Success" success="True" time="0.173" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.while_recording_a_property_change_that_does_not_change_the_underlying_value.does_not_change_the_case" executed="True" result="Success" success="True" time="0.016" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.Crud.while_recording_a_property_change_that_does_not_change_the_underlying_value.the_success_of_the_return_value_to_the_client_should_be_success_equals_false_so_that_no_refresh_is_triggered" executed="True" result="Success" success="True" time="0.017" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="while_trying_to_update_a_property_without_authorization_rights" executed="True" result="Success" success="True" time="0.163" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.while_trying_to_update_a_property_without_authorization_rights.should_have_interrogated_the_user_rights_for_a_permission" executed="True" result="Success" success="True" time="0.115" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.Crud.while_trying_to_update_a_property_without_authorization_rights.should_put_a_single_validation_message_in" executed="True" result="Success" success="True" time="0.013" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.while_trying_to_update_a_property_without_authorization_rights.should_return_success_false" executed="True" result="Success" success="True" time="0.015" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.while_trying_to_update_a_property_without_authorization_rights.should_show_not_authorized_as_the_message" executed="True" result="Success" success="True" time="0.014" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="while_updating_a_property_with_an_invalid_value" executed="True" result="Success" success="True" time="0.080" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Crud.while_updating_a_property_with_an_invalid_value.should_be_an_error" executed="True" result="Success" success="True" time="0.045" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Crud.while_updating_a_property_with_an_invalid_value.the_success_should_be_false" executed="True" result="Success" success="True" time="0.032" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Extensibility" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="ExtensionPropertyBinderTester" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Extensibility.ExtensionPropertyBinderTester.does_not_match_extension_property_on_non_domain_entities" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Extensibility.ExtensionPropertyBinderTester.does_not_match_other_properties_of_domain_entity" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Extensibility.ExtensionPropertyBinderTester.matches_extension_properties_on_domain_entities" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="FubuFastPackRegistryExtensionTester" executed="True" result="Success" success="True" time="0.344" asserts="0">
+                <results>
+                  <test-case name="FubuFastPack.Testing.FubuFastPackRegistryExtensionTester.converter_family_is_registered" executed="True" result="Success" success="True" time="0.290" asserts="2" />
+                  <test-case name="FubuFastPack.Testing.FubuFastPackRegistryExtensionTester.no_object_converter_families_registered" executed="True" result="Success" success="True" time="0.011" asserts="1" />
+                  <test-case name="FubuFastPack.Testing.FubuFastPackRegistryExtensionTester.query_service_is_registered" executed="True" result="Success" success="True" time="0.011" asserts="2" />
+                  <test-case name="FubuFastPack.Testing.FubuFastPackRegistryExtensionTester.smart_grid_service_is_registered" executed="True" result="Success" success="True" time="0.028" asserts="2" />
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="jqGrid" executed="True" result="Success" success="True" time="1.483" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="BinaryFilterHandlerTester" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.BinaryFilterHandlerTester.to_filter_rule" executed="True" result="Success" success="True" time="0.005" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="EntityDTOTester" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.EntityDTOTester.id_method" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="FilterColumnTester" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.FilterColumnTester.headers_returns_empty_enumeration" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.FilterColumnTester.selected_accessors_returns_empty_enumeration" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.FilterColumnTester.to_dictionary_returns_empty_enumeration" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="GridColumnAuthorizationTester" executed="True" result="Success" success="True" time="0.014" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnAuthorizationTester.WithNoPolicy" executed="True" result="Success" success="True" time="0.009" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnAuthorizationTester.WithPolicy" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="GridColumnTester" executed="True" result="Success" success="True" time="0.037" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.formatter_is_not_assigned_by_default" executed="True" result="Success" success="True" time="0.006" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.get_header_by_overriding_the_header_column" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.get_header_with_a_string_token" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.get_header_without_a_string_token_should_just_localize_the_header" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.get_headers_returns_the_one_vlaue" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.if_the_column_is_not_queryable_return_no_filters" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.return_a_single_select_accessor" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.sortable_in_the_colModel_when_IsSortable_is_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.sortable_in_the_colModel_when_IsSortable_is_true" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.the_column_is_sortable_by_default" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.the_index_in_the_colModel_is_the_accessor_name" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridColumnTester.the_name_in_the_colModel_is_the_accessor_name" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="GridDefinitionTester" executed="True" result="Success" success="True" time="0.020" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridDefinitionTester.explicit_default_sort" executed="True" result="Success" success="True" time="0.007" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridDefinitionTester.if_no_explicit_sort_use_the_first_column" executed="True" result="Success" success="True" time="0.005" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridDefinitionTester.if_no_explicit_sort_use_the_first_column_if_the_first_column_is_a_view_link" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="GridRequestTester" executed="True" result="Success" success="True" time="0.012" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridRequestTester.default_page_is_one" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridRequestTester.default_rows_is_ten" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridRequestTester.default_sort_field_is_null" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridRequestTester.to_data_request_with_ascending_sort_order" executed="True" result="Success" success="True" time="0.002" asserts="4" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridRequestTester.to_data_request_with_descending_sort_order" executed="True" result="Success" success="True" time="0.000" asserts="4" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="GridTester" executed="True" result="Success" success="True" time="0.021" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridTester.allow_create_new" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridTester.can_save_query" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridTester.can_save_query_is_true_by_default" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridTester.do_not_allow_user_sorting_overwrites_sortable_on_all_columns" executed="True" result="Success" success="True" time="0.006" asserts="5" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridTester.get_header_by_default_uses_the_string_token" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.GridTester.if_the_header_is_null_get_header_returns_pluralization_of_the_entity_type" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="LinkColumnTester" executed="True" result="Success" success="True" time="0.036" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.formatter_can_be_overriden" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.formatter_can_be_overriden_by_trimmed" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.formatter_is_link_by_default" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.is_filterable_by_default" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.link_name_is_driven_off_of_the_accessor_name" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.returns_a_single_header" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.should_return_the_display_accessor" executed="True" result="Success" success="True" time="0.003" asserts="5" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.sortable_by_default" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.sortable_in_the_colModel_when_IsSortable_is_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.sortable_in_the_colModel_when_IsSortable_is_true" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.the_index_in_the_colModel_is_the_accessor_name" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.LinkColumnTester.the_name_in_the_colModel_is_the_accessor_name" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="NamedGridRequestTester" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.NamedGridRequestTester.for_static_builder" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="smart_grid_harness_for_a_grid_with_multiple_args" executed="True" result="Success" success="True" time="0.177" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_for_a_grid_with_multiple_args.build_the_grid_with_the_proper_arguments" executed="True" result="Success" success="True" time="0.125" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_for_a_grid_with_multiple_args.get_arguments_as_string_array" executed="True" result="Success" success="True" time="0.004" asserts="5" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_for_a_grid_with_multiple_args.get_query_string" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_for_a_grid_with_multiple_args.register_arguments_happy_path" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_for_a_grid_with_multiple_args.register_arguments_with_the_correct_number_but_a_wrong_type" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_for_a_grid_with_multiple_args.url_on_the_model_has_a_query_string_for_both_the_person_and_the_title_arg" executed="True" result="Success" success="True" time="0.027" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="smart_grid_harness_with_a_single_entity_arg" executed="True" result="Success" success="True" time="0.028" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.build_the_grids_with_the_proper_arguments" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.can_use_a_null_entity_argument" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.get_arguments_as_string_should_convert_entity_to_the_id_string" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.get_header_text_delegates_to_the_grid" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.get_url_query_string" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.throw_smart_grid_exception_if_argument_is_not_right_type" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_entity_arg.url_on_the_model_has_a_query_string_for_the_person_arg" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="smart_grid_harness_with_a_single_simple_arg" executed="True" result="Success" success="True" time="0.019" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_simple_arg.build_the_grid_with_the_proper_arguments" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_simple_arg.get_arguments_as_string_array" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_simple_arg.url_on_the_model_has_a_query_string_for_the_title_arg" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_a_single_simple_arg.url_on_the_model_has_a_query_string_for_the_title_arg_is_url_encoded" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="smart_grid_harness_with_no_grid_args_" executed="True" result="Success" success="True" time="0.023" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_no_grid_args_.entity_type" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_no_grid_args_.grid_type" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_no_grid_args_.string_arguments_should_be_empty" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_no_grid_args_.throw_smartgridexception_when_trying_to_register_an_argument_that_is_not_valid" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.smart_grid_harness_with_no_grid_args_.url_on_the_model_has_no_query_string" executed="True" result="Success" success="True" time="0.009" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="SmartGridConventionTester" executed="True" result="Success" success="True" time="0.605" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.SmartGridConventionTester.each_smart_grid_harness_is_registered_by_name_in_the_container" executed="True" result="Success" success="True" time="0.552" asserts="4" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.SmartGridConventionTester.registers_an_action_call_for_smart_grid_controller_data" executed="True" result="Success" success="True" time="0.011" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.SmartGridConventionTester.should_have_behavior_chains_for_both_grids_in_this_assembly" executed="True" result="Success" success="True" time="0.007" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.SmartGridConventionTester.should_pull_the_authorization_rules_for_the_grid_to_the_behavior_chain" executed="True" result="Success" success="True" time="0.011" asserts="5" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.SmartGridConventionTester.should_put_a_json_output_node_at_the_end" executed="True" result="Success" success="True" time="0.008" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.SmartGridConventionTester.use_the_grid_name_in_the_route" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="StringFilterHandlerTester" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.StringFilterHandlerTester.to_filter_rule" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_building_the_grid_model" executed="True" result="Success" success="True" time="0.066" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.allow_create_new_negative" executed="True" result="Success" success="True" time="0.014" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.allow_create_new_positive" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.allow_creation_is_false_so_no_new_entity_values" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.allow_creation_is_true_but_endpoint_is_not_authorized_so_allow_creation_is_overriden" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.allow_creation_is_true_but_endpoint_is_not_authorized_so_no_new_entity_values" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.allow_creation_is_true_should_get_new_entity_values_on_grid_model" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.can_save_query_negative" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.can_save_query_positive" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.get_filtered_properties" executed="True" result="Success" success="True" time="0.004" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.grid_name_is_set_on_build_model" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.grid_type_is_set_on_build_model" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.header_text_is_pulled_from_grid" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.jq_grid_model_is_set" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_building_the_grid_model.puts_all_the_initial_criteria_into_the_grid_model" executed="True" result="Success" success="True" time="0.005" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_filling_the_entity_dto_with_the_default_column_settings" executed="True" result="Success" success="True" time="0.041" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_filling_the_entity_dto_with_the_default_column_settings.the_value_added_to_the_dto_should_be_the_formatted_value_for_the_raw_accessor_value" executed="True" result="Success" success="True" time="0.040" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_getting_the_counts_for_a_grid" executed="True" result="Success" success="True" time="0.152" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_counts_for_a_grid.has_the_actual_count" executed="True" result="Success" success="True" time="0.140" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_counts_for_a_grid.has_the_header_text" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_counts_for_a_grid.should_have_the_url_with_the_querystring" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_getting_the_grid_state_for_a_grid" executed="True" result="Success" success="True" time="0.042" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.header_text_should_be_from_the_grid" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.should_have_the_row_count" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.should_set_the_arguments_of_the_grid" executed="True" result="Success" success="True" time="0.005" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.should_set_the_grid_container_id" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.should_set_the_grid_id" executed="True" result="Success" success="True" time="0.012" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.should_set_the_label_id" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_grid_state_for_a_grid.url_should_be_the_url_for_grid_request_plus_the_querystring_from_the_harness" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_getting_the_querystring_for_a_grid" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_querystring_for_a_grid.should_get_the_resulting_url" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_querystring_for_a_grid.should_set_the_arguments_on_the_harness" executed="True" result="Success" success="True" time="0.003" asserts="0" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_getting_the_url_for_a_grid" executed="True" result="Success" success="True" time="0.020" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_url_for_a_grid.should_register_the_arguments_with_the_underlying_harness" executed="True" result="Success" success="True" time="0.005" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_url_for_a_grid.the_url_includes_the_query_string_from_the_smartgridharness" executed="True" result="Success" success="True" time="0.006" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_getting_the_url_for_a_grid.the_url_should_start_with_the_url_for_the_grid_name_and_model" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_marking_a_column_as_time_ago" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_marking_a_column_as_time_ago.the_col_model_formatter_should_be_timeAgo" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_marking_a_column_as_time_ago.the_value_added_to_the_dto_should_be_the_date_formatted_in_long_time_format" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_using_a_command_link" executed="True" result="Success" success="True" time="0.049" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.all_accessors_should_include_the_id" executed="True" result="Success" success="True" time="0.010" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.can_override_the_body" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.can_override_the_formatter" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.filtered_properties_should_not_have_anything" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.header_is_the_stringtoken_key" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.headers_returns_one_header" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.is_not_sortable" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.needs_to_store_the_link_name_in_the_colModel" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.select_accessors_should_include_the_id" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.should_write_the_literal_text_of_the_string_token_to_the_cell" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.should_write_the_url_to_the_data_column" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.the_formatter_in_the_col_model_should_be_command" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_using_a_command_link.the_name_and_index_of_the_colModel_should_be_the_key_of_the_string_token" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_writing_a_disabled_link_column" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_writing_a_disabled_link_column.does_not_write_the_link_to_the_dto" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_writing_a_disabled_link_column.formatter_is_the_default_empty" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_writing_a_disabled_link_column.writes_the_formatted_value_to_the_cell_array" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_writing_data_to_a_normal_link" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_writing_data_to_a_normal_link.writes_the_formatted_value_to_the_cell_array" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.jqGrid.when_writing_data_to_a_normal_link.writes_the_url_to_the_first_column" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="NHibernate" executed="True" result="Success" success="True" time="0.255" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="a_where_alias_should_look_like" executed="True" result="Success" success="True" time="0.177" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.a_where_alias_should_look_like.should_hook_up_the_criteria" executed="True" result="Success" success="True" time="0.170" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.a_where_alias_should_look_like.should_NOT_be_setup_for_outer_join" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.a_where_alias_should_look_like.the_accessor_should_be_correct_duh" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="aoeu" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.aoeu.EqualityCheck" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.aoeu.GetHashCodeCheck" executed="False" result="Ignored">
+                        <reason>
+                          <message><![CDATA[This should work but doesn't]]></message>
+                        </reason>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="DatabaseSettingsTester" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.DatabaseSettingsTester.cache_is_enabled" executed="True" result="Success" success="True" time="0.003" asserts="3" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.DatabaseSettingsTester.cache_is_not_enabled" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.DatabaseSettingsTester.get_the_basic_properties" executed="True" result="Success" success="True" time="0.001" asserts="6" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.DatabaseSettingsTester.provider_type_is_set_by_default" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.DatabaseSettingsTester.statistics_are_generated" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.DatabaseSettingsTester.statistics_are_not_generated" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_adding_a_column_and_a_where_expression" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_adding_a_column_and_a_where_expression.should_only_return_the_same_alias_one_time" executed="True" result="Success" success="True" time="0.008" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_adding_a_where_expression" executed="True" result="Success" success="True" time="0.005" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_adding_a_where_expression.should_only_return_the_same_alias_one_time" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_adding_a_where_expression.the_where_should_be_added_to_the_aliases" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_applying_a_projection_alias" executed="True" result="Success" success="True" time="0.015" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_applying_a_projection_alias.should_create_the_alias_with_the_property_name" executed="True" result="Success" success="True" time="0.009" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_applying_a_projection_alias.should_indicate_inner_join_by_default" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_applying_a_projection_alias.should_indicate_left_outer_join_if_outer_join_is_specified" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="when_creating_a_projection_alias" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_creating_a_projection_alias.should_create_an_alias_for_a_chained_property" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_creating_a_projection_alias.should_not_create_an_alias_for_a_simple_property" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_creating_a_projection_alias.should_set_outer_join_on_the_projection_alias" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.NHibernate.when_creating_a_projection_alias.should_set_the_accessor_on_the_projection_alias" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Persistence" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="EntityFinderTester" executed="True" result="Success" success="True" time="0.008" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Persistence.EntityFinderTester.should_return_the_flattened_entity_for_given_id" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Querying" executed="True" result="Success" success="True" time="0.088" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="QueryableDataSourceFilterTester" executed="True" result="Success" success="True" time="0.019" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Querying.QueryableDataSourceFilterTester.where_equal_testing" executed="True" result="Success" success="True" time="0.015" asserts="5" />
+                      <test-case name="FubuFastPack.Testing.Querying.QueryableDataSourceFilterTester.where_not_equal_testing" executed="True" result="Success" success="True" time="0.002" asserts="6" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="SingleEntityFilterTester" executed="True" result="Success" success="True" time="0.056" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.a_single_deny_among_many_filters_will_deny_the_entity" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.denying_restriction_indicates_which_restriction_denied_the_entity" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.or_will_allow_viewing_if_one_of_the_sides_is_true" executed="True" result="Success" success="True" time="0.009" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.or_will_not_allow_viewing_if_the_or_clause_is_false" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_equal_should_handle_boxed_values" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_equal_should_handle_entities" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_equal_will_allow_viewing_if_the_entitys_property_and_expected_value_is_null" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_equal_will_allow_viewing_if_the_entitys_property_is_a_specific_value" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_equal_will_deny_viewing_if_the_entitys_property_is_not_a_specific_value" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_not_equal_should_handle_boxed_values" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_not_equal_should_handle_entities" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_not_equal_will_allow_viewing_if_the_entitys_property_is_not_a_specific_value" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_not_equal_will_deny_viewing_if_the_entitys_property_and_expected_value_is_null" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.where_not_equal_will_deny_viewing_if_the_entitys_property_is_a_specific_value" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Querying.SingleEntityFilterTester.will_not_allow_viewing_if_there_are_multiple_ors_and_one_is_false" executed="True" result="Success" success="True" time="0.010" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="SortRuleTester" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Querying.SortRuleTester.do_not_override_sorting_if_it_exists" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Querying.SortRuleTester.do_override_sorting_if_no_sorting_exists" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Security" executed="True" result="Success" success="True" time="0.051" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="RestrictedDataAuthorizationPolicyTester" executed="True" result="Success" success="True" time="0.049" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Security.RestrictedDataAuthorizationPolicyTester.should_deny_access_if_any_of_the_data_restrictions_deny_it" executed="True" result="Success" success="True" time="0.028" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Security.RestrictedDataAuthorizationPolicyTester.should_not_deny_access_if_none_of_the_data_restrictions_deny_it" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                      <test-case name="FubuFastPack.Testing.Security.RestrictedDataAuthorizationPolicyTester.should_not_vote_if_the_request_does_not_contain_the_type_the_restriction_applies_to" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Validation" executed="True" result="Success" success="True" time="0.125" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="UniqueValidationRuleTester" executed="True" result="Success" success="True" time="0.008" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Validation.UniqueValidationRuleTester.validation_when_the_count_is_more_than_zero_should_trigger_a_validation_failure" executed="True" result="Success" success="True" time="0.005" asserts="6" />
+                      <test-case name="FubuFastPack.Testing.Validation.UniqueValidationRuleTester.validation_when_the_count_is_zero_should_do_nothing" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="UniqueValidationSourceTester" executed="True" result="Success" success="True" time="0.061" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Validation.UniqueValidationSourceTester.find_multiple_rules_for_a_complex_unique_marked_class" executed="True" result="Success" success="True" time="0.054" asserts="15" />
+                      <test-case name="FubuFastPack.Testing.Validation.UniqueValidationSourceTester.finds_one_rule_for_a_simple_unique" executed="True" result="Success" success="True" time="0.002" asserts="6" />
+                      <test-case name="FubuFastPack.Testing.Validation.UniqueValidationSourceTester.should_find_no_rules_for_a_class_with_no_unique_rules" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="ValidationScanningTester" executed="True" result="Success" success="True" time="0.053" asserts="0">
+                    <results>
+                      <test-case name="FubuFastPack.Testing.Validation.ValidationScanningTester.found_explicit_rule_from_validation_registry" executed="True" result="Success" success="True" time="0.042" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Validation.ValidationScanningTester.should_have_found_rules_from_validation_registrations_found_in_scanning" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                      <test-case name="FubuFastPack.Testing.Validation.ValidationScanningTester.should_have_rules_from_validation_convention_found_from_scanning" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

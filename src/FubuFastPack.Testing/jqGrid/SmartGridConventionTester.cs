@@ -113,6 +113,11 @@ namespace FubuFastPack.Testing.jqGrid
             throw new System.NotImplementedException();
         }
 
+        public string FullUrl()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public string ToFullUrl(string url)
         {
             throw new System.NotImplementedException();

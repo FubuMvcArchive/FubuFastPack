@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./buildsupport/ripple.exe $@
