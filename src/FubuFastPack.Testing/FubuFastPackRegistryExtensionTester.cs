@@ -45,7 +45,7 @@ namespace FubuFastPack.Testing
                                               x.For<IEntityFinder>().Use<EntityFinder>();
                                               x.For<IEntityFinderCache>().Use<StructureMapEntityFinderCache>();
                                               x.For<ICurrentHttpRequest>().Use<FakeCurrentHttpRequest>();
-                                              x.For<IModelBinder>().Use(StandardModelBinder.Basic());
+                                              //x.For<IModelBinder>().Use(StandardModelBinder.Basic()); - dropped from fubucore 4/20/2012
                                               x.For<IObjectResolver>().Use(ObjectResolver.Basic());
                                               x.For<IEntityDefaults>().Use<NulloEntityDefaults>();
                                           });

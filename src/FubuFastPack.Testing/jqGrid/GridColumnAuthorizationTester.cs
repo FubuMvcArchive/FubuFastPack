@@ -4,13 +4,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using FubuCore;
 using FubuCore.Binding;
+using FubuCore.Formatting;
 using FubuCore.Reflection;
 using FubuFastPack.JqGrid;
 using FubuFastPack.Querying;
 using FubuFastPack.Testing.Security;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
-using Microsoft.Practices.ServiceLocation;
 using NUnit.Framework;
 using FubuTestingSupport;
 

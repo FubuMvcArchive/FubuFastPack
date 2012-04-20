@@ -14,16 +14,17 @@
     <dependencies>
       <dependency id="FubuMVC.References" />
       <dependency id="FubuValidation" />
+      <dependency id="FubuCore" version="0.9.9.137" />
     </dependencies>
   </metadata>
   <files>
-	  <file src="..\..\build\FubuFastPack.*" target="lib" />
-	  <file src="..\..\src\FubuFastPack\**\*.cs" target="src" />
-	  <file src="..\..\lib\fluent-nhibernate\FluentNHibernate.dll" target="lib" />	  
-	  <file src="..\..\lib\NHibernate\Antlr3.Runtime.dll" target="lib" />
-	  <file src="..\..\lib\NHibernate\Castle.Core.dll" target="lib" />
-	  <file src="..\..\lib\NHibernate\NHibernate.ByteCode.Castle.dll" target="lib" />
-	  <file src="..\..\lib\NHibernate\Iesi.Collections.dll" target="lib" />
-	  <file src="..\..\lib\NHibernate\NHibernate.dll" target="lib" />
+    <file src="..\..\build\FubuFastPack.*" target="lib" />
+    <file src="..\..\src\FubuFastPack\**\*.cs" target="src" />
+    <file src="..\..\lib\fluent-nhibernate\FluentNHibernate.dll" target="lib" />
+    <file src="..\..\lib\NHibernate\Antlr3.Runtime.dll" target="lib" />
+    <file src="..\..\lib\NHibernate\Castle.Core.dll" target="lib" />
+    <file src="..\..\lib\NHibernate\NHibernate.ByteCode.Castle.dll" target="lib" />
+    <file src="..\..\lib\NHibernate\Iesi.Collections.dll" target="lib" />
+    <file src="..\..\lib\NHibernate\NHibernate.dll" target="lib" />
   </files>
 </package>

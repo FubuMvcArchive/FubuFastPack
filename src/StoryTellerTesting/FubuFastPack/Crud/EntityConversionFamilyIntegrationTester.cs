@@ -6,7 +6,6 @@ using FubuTestApplication.Domain;
 using FubuTestingSupport;
 using NUnit.Framework;
 using StructureMap;
-using InMemoryRequestData = FubuMVC.Core.Runtime.InMemoryRequestData;
 
 namespace IntegrationTesting.FubuFastPack.Crud
 {

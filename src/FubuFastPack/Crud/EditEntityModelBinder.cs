@@ -25,15 +25,16 @@ namespace FubuFastPack.Crud
     // tests, but still...
     public class EditEntityModelBinder : IModelBinder
     {
-        private readonly IModelBinder _innerBinder;
         private readonly IEntityDefaults _entityDefaults;
-        private readonly IPropertySetter _propertySetter;
+        private readonly IObjectResolver _resolver;
+        private readonly IServiceLocator _locator;
 
-        public EditEntityModelBinder(IModelBinder innerBinder, IEntityDefaults entityDefaults, IPropertySetter propertySetter)
+        public EditEntityModelBinder(IEntityDefaults entityDefaults, IObjectResolver resolver, IServiceLocator locator)
         {
-            _innerBinder = innerBinder;
             _entityDefaults = entityDefaults;
-            _propertySetter = propertySetter;
+            
+            _resolver = resolver;
+            _locator = locator;
         }
 
         public bool Matches(Type type)
@@ -46,26 +47,23 @@ namespace FubuFastPack.Crud
             throw new NotImplementedException();
         }
 
-        public object Bind(Type type, IBindingContext context)
+        public object Bind(Type inputModelType, IBindingContext context)
         {
-            var entityType = type.GetConstructors().Single(x => x.GetParameters().Count() == 1).GetParameters().Single().ParameterType;
+            //we determine the type by sniffing the ctor arg
+            var entityType = inputModelType
+                .GetConstructors()
+                .Single(x => x.GetParameters().Count() == 1)
+                .GetParameters()
+                .Single()
+                .ParameterType;
+           
+            var entity = tryFindExistingEntity(entityType, context) 
+                ?? createNewEntity(entityType, context);
 
-            // This is our convention.  
-            var prefix = entityType.Name;
-            IBindingContext prefixedContext = context.PrefixWith(prefix);
-
-            DomainEntity entity = tryFindExistingEntity(context, prefixedContext, entityType) ?? createNewEntity(entityType, prefixedContext);
-
-            var model = (EditEntityModel)Activator.CreateInstance(type, entity);
+            var model = (EditEntityModel)Activator.CreateInstance(inputModelType, entity);
 
 
-            // Get the binding errors from conversion of the Entity
-            prefixedContext.Problems.Each(x =>
-            {
-                model.Notification.RegisterMessage(x.Property, FastPackKeys.PARSE_VALUE);
-            });
-            
-            _propertySetter.BindProperties(type, model, context);
+            _resolver.BindProperties(inputModelType, model, context);
 
             // Get the binding errors from conversion of the EditEntityModel
             context.Problems.Each(x =>
@@ -76,23 +74,48 @@ namespace FubuFastPack.Crud
             return model;
         }
 
-        private DomainEntity createNewEntity(Type entityType, IBindingContext prefixedContext)
-        {
-            var entity = (DomainEntity)_innerBinder.Bind(entityType, prefixedContext);
-            entity.Id = Guid.Empty;
-            _entityDefaults.ApplyDefaultsToNewEntity(entity);
-
-            return entity;
-        }
-
-        private DomainEntity tryFindExistingEntity(IBindingContext context, IBindingContext prefixedContext, Type entityType)
+        private DomainEntity tryFindExistingEntity(Type entityType, IBindingContext context)
         {
             DomainEntity entity = null;
 
             context.Data.ValueAs(entityType, "Id", o =>
             {
                 entity = (DomainEntity) o;
-                _propertySetter.BindProperties(entityType, entity, prefixedContext);
+
+                //TODO: this should be on context
+                var childData = context.GetSubRequest(entityType.Name);
+                var c = new BindingContext(childData, _locator, context.Logger);
+                //TODO: End fail
+
+                
+                _resolver.BindProperties(entityType, entity, c);
+
+                //TODO: I have to move the 'problems' forward - because I used a new context object
+                c.Problems.Each(p =>
+                {
+                    context.Problems.Add(p);
+                });
+            });
+
+            return entity;
+        }
+
+        private DomainEntity createNewEntity(Type entityType, IBindingContext context)
+        {
+            //TODO: this should be on context
+            var childData = context.GetSubRequest(entityType.Name);
+            var c = new BindingContext(childData, _locator, context.Logger);
+            //TODO: End fail
+
+            var result = _resolver.BindModel(entityType, c);
+            var entity = (DomainEntity) result.Value;
+            entity.Id = Guid.Empty;
+            _entityDefaults.ApplyDefaultsToNewEntity(entity);
+
+            //TODO: I have to move the 'problems' forward - because I used a new context object
+            c.Problems.Each(p =>
+            {
+                context.Problems.Add(p);
             });
 
             return entity;
