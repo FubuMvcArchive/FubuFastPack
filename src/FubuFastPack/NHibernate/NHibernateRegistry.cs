@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
-using FubuCore;
+using FubuCore.Formatting;
 using FubuCore.Util;
 using NHibernate.Cfg;
 using NHibernate.Cfg.Loquacious;

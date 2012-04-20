@@ -1,6 +1,6 @@
 ﻿using System;
-using FubuCore;
 using FubuCore.Conversion;
+using FubuCore.Formatting;
 using FubuCore.Reflection;
 using FubuFastPack.Domain;
 using FubuFastPack.Validation;

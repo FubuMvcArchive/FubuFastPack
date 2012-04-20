@@ -28,7 +28,7 @@ namespace FubuFastPack.Binding
 
                                                                                  var id = new Guid(text);
                                                                                  return repo.Find(type, id);
-                                                                             });
+                                                                             },"Converting domain entities");
 
         }
     }

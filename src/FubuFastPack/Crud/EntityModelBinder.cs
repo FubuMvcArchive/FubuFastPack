@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using FubuCore;
 using FubuCore.Binding;
 using FubuCore.Reflection;
@@ -20,8 +21,10 @@ namespace FubuFastPack.Crud
 
         public object Bind(Type type, IBindingContext context)
         {
-            var entity = context.ValueAs(type, "Id");
+            
 
+            var entity = context.Data.ValueAs(type, "Id");
+         
             if (entity != null) return entity;
 
             if (type.IsConcrete())

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using FubuCore;
 using FubuFastPack.Domain;
-using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {

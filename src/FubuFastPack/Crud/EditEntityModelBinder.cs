@@ -27,11 +27,13 @@ namespace FubuFastPack.Crud
     {
         private readonly IModelBinder _innerBinder;
         private readonly IEntityDefaults _entityDefaults;
+        private readonly IPropertySetter _propertySetter;
 
-        public EditEntityModelBinder(IModelBinder innerBinder, IEntityDefaults entityDefaults)
+        public EditEntityModelBinder(IModelBinder innerBinder, IEntityDefaults entityDefaults, IPropertySetter propertySetter)
         {
             _innerBinder = innerBinder;
             _entityDefaults = entityDefaults;
+            _propertySetter = propertySetter;
         }
 
         public bool Matches(Type type)
@@ -50,7 +52,7 @@ namespace FubuFastPack.Crud
 
             // This is our convention.  
             var prefix = entityType.Name;
-            var prefixedContext = context.PrefixWith(prefix);
+            IBindingContext prefixedContext = context.PrefixWith(prefix);
 
             DomainEntity entity = tryFindExistingEntity(context, prefixedContext, entityType) ?? createNewEntity(entityType, prefixedContext);
 
@@ -60,15 +62,15 @@ namespace FubuFastPack.Crud
             // Get the binding errors from conversion of the Entity
             prefixedContext.Problems.Each(x =>
             {
-                model.Notification.RegisterMessage(x.Properties.Last(), FastPackKeys.PARSE_VALUE);
+                model.Notification.RegisterMessage(x.Property, FastPackKeys.PARSE_VALUE);
             });
-
-            _innerBinder.Bind(type, model, context);
+            
+            _propertySetter.BindProperties(type, model, context);
 
             // Get the binding errors from conversion of the EditEntityModel
             context.Problems.Each(x =>
             {
-                model.Notification.RegisterMessage(x.Properties.Last(), FastPackKeys.PARSE_VALUE);
+                model.Notification.RegisterMessage(x.Property, FastPackKeys.PARSE_VALUE);
             });
 
             return model;
@@ -87,10 +89,10 @@ namespace FubuFastPack.Crud
         {
             DomainEntity entity = null;
 
-            context.ValueAs(entityType, "Id", o =>
+            context.Data.ValueAs(entityType, "Id", o =>
             {
                 entity = (DomainEntity) o;
-                _innerBinder.Bind(entityType, entity, prefixedContext);
+                _propertySetter.BindProperties(entityType, entity, prefixedContext);
             });
 
             return entity;

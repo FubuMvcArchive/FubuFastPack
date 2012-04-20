@@ -10,6 +10,7 @@ namespace FubuFastPack.Extensibility
     {
         private static readonly string propertyName = ReflectionHelper.GetProperty<DomainEntity>(x => x.ExtendedProperties).Name;
 
+      
         // This only applies to properties that close Extends<>
         public bool Matches(PropertyInfo property)
         {
@@ -33,7 +34,11 @@ namespace FubuFastPack.Extensibility
             // direct the FubuMVC model binding to resolve an object of the
             // extensionType using "entityType.Name" as the prefix on the form data,
             // and place the newly created object using the specified property
-            context.BindChild(property, extensionType, string.Empty);
+            var childRequest = context.GetSubRequest(property.Name);
+            context.BindObject(childRequest,property.PropertyType, o =>
+            {
+                property.SetValue(context.Object, o, null);
+            });
         }
     }
 }

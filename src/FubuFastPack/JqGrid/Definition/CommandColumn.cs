@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using FubuCore;
+using FubuCore.Formatting;
 using FubuCore.Reflection;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuLocalization;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.Urls;
-using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {

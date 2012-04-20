@@ -10,7 +10,6 @@ using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuLocalization;
 using FubuMVC.Core;
-using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {

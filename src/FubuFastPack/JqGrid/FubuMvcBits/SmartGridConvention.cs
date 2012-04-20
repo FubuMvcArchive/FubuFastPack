@@ -4,6 +4,7 @@ using FubuCore;
 using FubuCore.Reflection;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
+using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Core.Resources.Conneg;
 
@@ -32,8 +33,11 @@ namespace FubuFastPack.JqGrid
             var key = type.NameForGrid();
 
             var harnessType = typeof (SmartGridHarness<>).MakeGenericType(type);
-            var objectDef = graph.Services.AddService<ISmartGridHarness>(harnessType);
+
+            var objectDef = new ObjectDef(harnessType);
             objectDef.Name = key;
+            graph.Services.AddService(typeof(ISmartGridHarness), objectDef);
+            
         }
 
         private void buildChain(BehaviorGraph graph, Type t)

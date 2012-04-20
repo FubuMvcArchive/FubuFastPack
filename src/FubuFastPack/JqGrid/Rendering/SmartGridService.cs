@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FubuCore;
 using FubuFastPack.Domain;
 using FubuFastPack.Querying;
 using FubuMVC.Core.Urls;
-using Microsoft.Practices.ServiceLocation;
 
 namespace FubuFastPack.JqGrid
 {
@@ -72,6 +72,7 @@ namespace FubuFastPack.JqGrid
 
         public GridCounts GetCounts<TInput>(string gridName, params object[] args) where TInput : NamedGridRequest, new()
         {
+            
             var harness = _locator.GetInstance<ISmartGridHarness>(gridName);
             return getCounts<TInput>(harness, args);
         }

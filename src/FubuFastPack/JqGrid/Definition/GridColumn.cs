@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using FubuCore;
+using FubuCore.Formatting;
 using FubuCore.Reflection;
 using FubuMVC.Core.Urls;
 
@@ -38,6 +39,8 @@ namespace FubuFastPack.JqGrid
                 _modifications.Add(value);
             }
         }
+
+      
 
         public override IEnumerable<Accessor> SelectAccessors()
         {
