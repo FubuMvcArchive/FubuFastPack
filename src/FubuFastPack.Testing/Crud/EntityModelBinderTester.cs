@@ -46,12 +46,9 @@ namespace FubuFastPack.Testing.Crud
         public void try_to_return_a_new_object_of_that_type_if_it_cannot_be_found_in_the_repository_for_child_object_binding_scenarios()
         {
             var theId = Guid.NewGuid();
-
-            MockFor<IBindingContext>().Stub(x => x.Service<IRepository>()).Return(MockFor<IRepository>());
-            MockFor<IBindingContext>().Stub(x => x.Service<IRequestData>()).Return(MockFor<IRequestData>());
-            MockFor<IRequestData>().Stub(x => x.Value("Id")).Return(theId.ToString());
-
-            MockFor<IRepository>().Stub(x => x.Find<User>(theId)).Return(null);
+            MockFor<IBindingContext>().Stub(x => x.Data).Return(MockFor<IContextValues>());
+            MockFor<IContextValues>().Stub(x => x.ValueAs(null, null)).IgnoreArguments().Return(new User());
+          
 
             ClassUnderTest.Bind(typeof(User), MockFor<IBindingContext>()).ShouldBeOfType<User>().ShouldNotBeNull();
         }

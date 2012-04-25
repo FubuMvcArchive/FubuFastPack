@@ -21,20 +21,17 @@ namespace FubuFastPack.Crud
         }
     }
 
-    // TODO:  Get some integration tests around this monster.  It's well covered in Dovetail
-    // tests, but still...
+
     public class EditEntityModelBinder : IModelBinder
     {
         private readonly IEntityDefaults _entityDefaults;
-        private readonly IObjectResolver _resolver;
-        private readonly IServiceLocator _locator;
+       
 
-        public EditEntityModelBinder(IEntityDefaults entityDefaults, IObjectResolver resolver, IServiceLocator locator)
+        public EditEntityModelBinder(IEntityDefaults entityDefaults)
         {
             _entityDefaults = entityDefaults;
             
-            _resolver = resolver;
-            _locator = locator;
+         
         }
 
         public bool Matches(Type type)
@@ -62,8 +59,7 @@ namespace FubuFastPack.Crud
 
             var model = (EditEntityModel)Activator.CreateInstance(inputModelType, entity);
 
-
-            _resolver.BindProperties(inputModelType, model, context);
+            context.BindProperties(model);
 
             // Get the binding errors from conversion of the EditEntityModel
             context.Problems.Each(x =>
@@ -80,15 +76,12 @@ namespace FubuFastPack.Crud
 
             context.Data.ValueAs(entityType, "Id", o =>
             {
+                if (o == null) return;
+
                 entity = (DomainEntity) o;
 
-                //TODO: this should be on context
-                var childData = context.GetSubRequest(entityType.Name);
-                var c = new BindingContext(childData, _locator, context.Logger);
-                //TODO: End fail
-
-                
-                _resolver.BindProperties(entityType, entity, c);
+                var c = context.GetSubContext(entityType.Name);
+                c.BindProperties(entity);
 
                 //TODO: I have to move the 'problems' forward - because I used a new context object
                 c.Problems.Each(p =>
@@ -102,13 +95,16 @@ namespace FubuFastPack.Crud
 
         private DomainEntity createNewEntity(Type entityType, IBindingContext context)
         {
-            //TODO: this should be on context
-            var childData = context.GetSubRequest(entityType.Name);
-            var c = new BindingContext(childData, _locator, context.Logger);
-            //TODO: End fail
+            var c = context.GetSubContext(entityType.Name);
 
-            var result = _resolver.BindModel(entityType, c);
-            var entity = (DomainEntity) result.Value;
+            object result = null;
+            c.BindObject(entityType, o=>
+                                                      {
+                                                          c.BindProperties(o);
+                                                          result = o;
+                                                      });
+
+            var entity = (DomainEntity) result;
             entity.Id = Guid.Empty;
             _entityDefaults.ApplyDefaultsToNewEntity(entity);
 

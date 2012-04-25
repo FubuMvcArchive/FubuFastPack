@@ -26,7 +26,11 @@ namespace FubuFastPack.JqGrid
         private readonly IServiceLocator _services;
         private readonly IEndpointService _endpointService;
 
-        public SmartGridHarness(IServiceLocator services, IEndpointService endpointService, IQueryService queryService, ISmartRequest request, IEnumerable<IGridPolicy> globalPolicies)
+        public SmartGridHarness(IServiceLocator services, 
+            IEndpointService endpointService, 
+            IQueryService queryService, 
+            ISmartRequest request, 
+            IEnumerable<IGridPolicy> globalPolicies)
         {
             _services = services;
             _endpointService = endpointService;

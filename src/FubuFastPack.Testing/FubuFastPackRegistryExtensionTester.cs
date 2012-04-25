@@ -48,6 +48,7 @@ namespace FubuFastPack.Testing
                                               //x.For<IModelBinder>().Use(StandardModelBinder.Basic()); - dropped from fubucore 4/20/2012
                                               x.For<IObjectResolver>().Use(ObjectResolver.Basic());
                                               x.For<IEntityDefaults>().Use<NulloEntityDefaults>();
+                                              x.For<IRequestData>().Use(new InMemoryRequestData());
                                           });
         }
 

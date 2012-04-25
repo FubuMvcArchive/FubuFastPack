@@ -7,6 +7,7 @@ using FubuFastPack.Crud;
 using FubuFastPack.Domain;
 using NUnit.Framework;
 using FubuTestingSupport;
+using Rhino.Mocks;
 
 namespace FubuFastPack.Testing.Binding
 {
@@ -25,7 +26,7 @@ namespace FubuFastPack.Testing.Binding
         {
             inMemoryServiceLocator = new InMemoryServiceLocator();
 
-            _binder = new EditEntityModelBinder(new NulloEntityDefaults(), ObjectResolver.Basic(), inMemoryServiceLocator);
+            _binder = new EditEntityModelBinder(new NulloEntityDefaults());
 
             theGuid = Guid.NewGuid();
 
@@ -34,13 +35,13 @@ namespace FubuFastPack.Testing.Binding
             theData["Flavor"] = "choco";
             theData["Id"] = theGuid.ToString();
 
-            
-
             cl = new ConverterLibrary();
 
             oc = new ObjectConverter(inMemoryServiceLocator, cl);
 
             inMemoryServiceLocator.Add<IObjectConverter>(oc);
+
+            inMemoryServiceLocator.Add<IObjectResolver>(ObjectResolver.Basic());
         }
 
         [Test]
@@ -52,7 +53,6 @@ namespace FubuFastPack.Testing.Binding
 
             inMemoryServiceLocator.Add(oc);
             var results = _binder.Bind(typeof(EditBob), new BindingContext(theData, inMemoryServiceLocator, new NulloBindingLogger()));
-
             
             results.ShouldBeOfType<EditBob>();
             results.As<EditBob>().Target.ShouldNotBeNull();
