@@ -37,3 +37,4 @@ src/FubuFastPack.sln.DotSettings.user
 src/FubuFastPack.1.2.dotCover
 bottles.cmd
 fubu.cmd
+*TestResults.xml
