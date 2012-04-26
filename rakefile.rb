@@ -79,7 +79,7 @@ end
 
 desc "Bundles up the packaged content in FubuFastPack"
 task :bundle_fast_pack do
-  sh "#{Nuget.tool("FubuMVC.References", "fubu.exe")} assembly-pak src/FubuFastPack --projfile FubuFastPack.csproj"
+  sh "#{Nuget.tool("FubuMVC.References", "fubu.exe")} assembly-pak src/FubuFastPack --proj-file FubuFastPack.csproj"
 end
 
 
